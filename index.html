@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOHZA</title>
+    <meta name="description"
+        content="A private digital enforcement bureau. We locate, document, and permanently remove unauthorized reproductions of your protected intellectual property.">
+
+    <!-- Fonts: Playfair Display (Authority) + Share Tech Mono (Bureau/Case Files) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bureau-theme">
+
+    <!-- Global scanline overlay -->
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <span class="logo-bracket">[</span>KOHZA<span class="logo-bracket">]</span>
+            </a>
+            <div class="nav-links">
+                <a href="#operations">Operations</a>
+                <a href="#testimonial">Cases</a>
+                <a href="#protocol">Protocol</a>
+                <a href="ofm-creators.html">OF Creator</a>
+                <a href="info-products.html">Course Creators</a>
+            </div>
+            <div class="nav-action">
+                <a href="https://tally.so/r/rjlpyL" target="_blank" class="btn btn-red">Fill The Form</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#operations">Operations</a>
+        <a href="#testimonial">Cases</a>
+        <a href="#protocol">Protocol</a>
+        <a href="ofm-creators.html">OF Creator</a>
+        <a href="info-products.html">Course Creators</a>
+        <a href="https://tally.so/r/rjlpyL" target="_blank" class="btn btn-red">Fill The Form</a>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-wrap">
+            <img src="assets/-ultra-photoreal-cinematic-portrait-website-hero-b.jpeg" alt="" class="hero-bg-img"
+                aria-hidden="true">
+            <div class="hero-bg-overlay"></div>
+        </div>
+        <div class="hero-inner reveal-on-scroll">
+            <div class="case-file-tag">
+                <span class="mono">CASE BUREAU — ACTIVE OPS</span>
+            </div>
+            <h1 class="hero-headline">
+                We find them.<br>
+                <span class="serif-italic">We make them disappear.</span>
+            </h1>
+            <p class="hero-sub">Kohza is a private digital enforcement bureau. We operate in the shadows to hunt down
+                pirated content, impersonators, and unauthorized reproductions of your intellectual property — and erase
+                them permanently.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-red btn-large">Open a Case</a>
+                <a href="#protocol" class="btn btn-outline btn-large">View Protocol</a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span class="mono">SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <div class="stats-bar">
+        <div class="stats-inner reveal-on-scroll">
+            <div class="stat">
+                <span class="stat-num">98<span class="stat-pct">%</span></span>
+                <span class="stat-label mono">Removal Rate</span>
+            </div>
+            <div class="stat-sep"></div>
+            <div class="stat">
+                <span class="stat-num">52<span class="stat-pct">+</span></span>
+                <span class="stat-label mono">Platforms Surveilled</span>
+            </div>
+            <div class="stat-sep"></div>
+            <div class="stat">
+                <span class="stat-num">&lt;24<span class="stat-pct">h</span></span>
+                <span class="stat-label mono">Avg. Strike Time</span>
+            </div>
+            <div class="stat-sep"></div>
+            <div class="stat">
+                <span class="stat-num">∞</span>
+                <span class="stat-label mono">Ongoing Surveillance</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== THE PROBLEM ========== -->
+    <section class="section section-problem" id="problem">
+        <div class="section-inner">
+            <div class="problem-layout reveal-on-scroll">
+                <div class="problem-image-col">
+                    <div class="evidence-stack">
+                        <div class="evidence-frame evidence-card-1">
+                            <img src="assets/evidence/1.jpg" alt="Leaked Course Evidence 01" class="evidence-photo">
+                            <div class="evidence-label mono">EVIDENCE — LEAK 01</div>
+                        </div>
+                        <div class="evidence-frame evidence-card-2">
+                            <img src="assets/evidence/2.jpg" alt="Leaked Course Evidence 02" class="evidence-photo">
+                            <div class="evidence-label mono">EVIDENCE — LEAK 02</div>
+                        </div>
+                        <div class="evidence-frame evidence-card-3">
+                            <img src="assets/evidence/3.png" alt="Leaked Course Evidence 03" class="evidence-photo">
+                            <div class="evidence-label mono">EVIDENCE — LEAK 03</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="problem-text-col">
+                    <span class="section-tag mono">// THREAT ASSESSMENT</span>
+                    <h2 class="section-title">Your content is already <span class="serif-italic">out there.</span></h2>
+                    <p class="body-text">If you produce anything of value — courses, exclusive media, brand content —
+                        shadow operators have already scraped it. They are distributing authorized copies of your work
+                        right now across networks you don't monitor.</p>
+                    <div class="threat-list">
+                        <div class="threat-item">
+                            <span class="threat-tag mono">THREAT-01</span>
+                            <h3>The Whack-A-Mole Effect</h3>
+                            <p>One DMCA notice. Re-uploaded on a new domain within hours. Manual enforcement doesn't
+                                scale against automated piracy rings.</p>
+                        </div>
+                        <div class="threat-item">
+                            <span class="threat-tag mono">THREAT-02</span>
+                            <h3>Impersonation Operations</h3>
+                            <p>Fake accounts running under your face. Defrauding your audience. Every day they stay
+                                online costs you clients, revenue, and credibility.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OPERATIONS (SERVICES) ========== -->
+    <section class="section section-ops" id="operations">
+        <div class="section-inner">
+            <div class="section-header reveal-on-scroll">
+                <span class="section-tag mono">// ACTIVE OPERATIONS</span>
+                <h2 class="section-title">What the <span class="serif-italic">Bureau</span> handles.</h2>
+            </div>
+            <div class="ops-grid">
+                <div class="ops-card reveal-on-scroll">
+                    <div class="ops-card-header mono">OP-001 // COURSE PIRACY</div>
+                    <h3 class="ops-title">Pirated Courses &<br>Info Products</h3>
+                    <p class="ops-desc">High-ticket courses, coaching programs, and info products ripped and distributed
+                        across Telegram, Discord, and dark-web trackers. We locate every copy and initiate immediate
+                        removal.</p>
+                    <div class="ops-tags">
+                        <span class="tag mono">Telegram</span>
+                        <span class="tag mono">Reddit</span>
+                        <span class="tag mono">Torrent Trackers</span>
+                        <span class="tag mono">Cyberlockers</span>
+                    </div>
+                </div>
+                <div class="ops-card reveal-on-scroll" style="transition-delay:100ms">
+                    <div class="ops-card-header mono">OP-002 // IMPERSONATION</div>
+                    <h3 class="ops-title">Fake Accounts &<br>Identity Theft</h3>
+                    <p class="ops-desc">Fraudulent Instagram, Twitter, and TikTok accounts built to deceive your
+                        audience and extract money in your name. We compile evidence and execute platform-level
+                        takedowns within hours.</p>
+                    <div class="ops-tags">
+                        <span class="tag mono">Instagram</span>
+                        <span class="tag mono">Twitter / X</span>
+                        <span class="tag mono">TikTok</span>
+                        <span class="tag mono">Facebook</span>
+                    </div>
+                </div>
+                <div class="ops-card reveal-on-scroll" style="transition-delay:200ms">
+                    <div class="ops-card-header mono">OP-003 // EXCLUSIVE CONTENT</div>
+                    <h3 class="ops-title">Leaked Creator &<br>OFM Content</h3>
+                    <p class="ops-desc">Exclusive creator content and private media distributed without consent via link
+                        aggregators and re-upload networks. We identify and permanently suppress every unauthorized
+                        copy.</p>
+                    <div class="ops-tags">
+                        <span class="tag mono">Aggregator Sites</span>
+                        <span class="tag mono">Telegram</span>
+                        <span class="tag mono">Imageboards</span>
+                        <span class="tag mono">Leak Forums</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIAL ========== -->
+    <section class="section section-case" id="testimonial">
+        <div class="section-inner">
+            <div class="case-layout reveal-on-scroll">
+                <div class="case-text-col">
+                    <span class="section-tag mono">// FIELD REPORT — CLOSED CASE</span>
+                    <h2 class="section-title">The client <span class="serif-italic">speaks.</span></h2>
+                    <blockquote class="case-quote">
+                        "They came fast and removed the listings fast. For a guy who suffers from problems like these,
+                        they are the best to do this."
+                    </blockquote>
+                    <div class="case-subject">
+                        <div class="subject-id mono">SUBJECT: RICHARD WONDERS</div>
+                        <div class="subject-role mono">Content Creator & Entrepreneur</div>
+                        <div class="subject-status mono status-closed">CASE STATUS: CLOSED — RESOLVED</div>
+                    </div>
+                </div>
+                <div class="case-video-col">
+                    <div class="video-evidence-frame">
+                        <div class="video-evidence-label mono">REC ● FIELD INTERVIEW</div>
+                        <!-- Muted preview wrapper -->
+                        <div class="video-preview-wrap" id="video-preview-wrap">
+                            <video id="preview-video" class="evidence-video" src="assets/richard-testimonial.mp4"
+                                autoplay muted loop playsinline disablePictureInPicture
+                                controlsList="nodownload nofullscreen noremoteplayback"></video>
+                            <!-- Click to open modal -->
+                            <button class="video-play-overlay" id="video-play-btn"
+                                aria-label="Watch full interview with sound">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                                <span class="mono">WATCH WITH SOUND</span>
+                            </button>
+                            <!-- Unmute button bottom-right -->
+                            <button class="video-unmute-btn" id="video-unmute-btn" aria-label="Toggle mute">
+                                <!-- Muted icon -->
+                                <svg id="icon-muted" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                                    <path
+                                        d="M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25A6.978 6.978 0 0112 19c-1.66 0-3.18-.57-4.38-1.51L6.1 18.98A8.933 8.933 0 0012 21c1.99 0 3.82-.66 5.29-1.76l1.44 1.44L20 19.27 4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+                                </svg>
+                                <!-- Unmuted icon -->
+                                <svg id="icon-unmuted" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"
+                                    style="display:none">
+                                    <path
+                                        d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05A4.478 4.478 0 0016.5 12zM14 3.23v2.06A7 7 0 0119 12a7 7 0 01-5 6.71v2.06A9 9 0 0021 12 9 9 0 0014 3.23z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHO WE ARE ========== -->
+    <section class="section section-bureau" id="about">
+        <div class="bureau-bg-wrap">
+            <img src="assets/evidence_bg.png" alt="" class="bureau-bg-img" aria-hidden="true">
+            <div class="bureau-bg-overlay"></div>
+        </div>
+        <div class="section-inner">
+            <div class="bureau-layout reveal-on-scroll">
+                <div class="bureau-text-col">
+                    <span class="section-tag mono">// ORGANIZATION PROFILE</span>
+                    <h2 class="section-title">Unknown.<br><span class="serif-italic">Untraceable.<br>Effective.</span>
+                    </h2>
+                    <p class="body-text">Kohza does not advertise. We do not list our operatives. We exist to serve a
+                        single function: protect premium intellectual property from those who profit from stealing it.
+                    </p>
+                    <p class="body-text">Our operatives surveil 52+ networks around the clock. We use cryptographic
+                        evidence chains, upstream ISP interventions, and zero-warning takedown protocols to permanently
+                        neutralize infringement operations.</p>
+                    <ul class="bureau-creds">
+                        <li><span class="mono bullet">▸</span> Zero-Tolerance Enforcement Policy</li>
+                        <li><span class="mono bullet">▸</span> Cryptographic Evidence Chain</li>
+                        <li><span class="mono bullet">▸</span> Upstream Network Intervention</li>
+                        <li><span class="mono bullet">▸</span> Continuous 24/7 Threat Surveillance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROTOCOL ========== -->
+    <section class="section section-protocol" id="protocol">
+        <div class="section-inner">
+            <div class="protocol-header reveal-on-scroll">
+                <span class="section-tag mono">// ENFORCEMENT PROTOCOL</span>
+                <h2 class="section-title">The <span class="serif-italic">Protocol</span></h2>
+            </div>
+            <div class="protocol-steps">
+                <div class="protocol-step reveal-on-scroll">
+                    <div class="step-number mono">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Scan & Locate</h3>
+                        <p class="step-desc">Automated systems continuously sweep social platforms, cyberlockers,
+                            darknet forums, and encrypted channels for unauthorized reproductions of your assets. Every
+                            match is logged with timestamp and URL.</p>
+                    </div>
+                </div>
+                <div class="protocol-step reveal-on-scroll">
+                    <div class="step-number mono">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Build the Evidence File</h3>
+                        <p class="step-desc">Each discovery is compiled into a sealed evidence package —
+                            cryptographically hashed screenshots, metadata captures, and a full chain of custody.
+                            Legally admissible. Court-ready.</p>
+                    </div>
+                </div>
+                <div class="protocol-step reveal-on-scroll">
+                    <div class="step-number mono">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Strike</h3>
+                        <p class="step-desc">Compliance notices are issued directly to web hosts, CDN providers, and
+                            upstream ISPs. No warnings. Immediate suspension demands on major platforms execute within 2
+                            to 24 hours.</p>
+                    </div>
+                </div>
+                <div class="protocol-step reveal-on-scroll">
+                    <div class="step-number mono">04</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Persistent Suppression</h3>
+                        <p class="step-desc">Every removed asset is fingerprinted. Re-upload attempts across any
+                            monitored network trigger an automatic secondary strike — no manual intervention required.
+                            The cycle never starts again.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="section section-intel" id="faq">
+        <div class="section-inner">
+            <div class="section-header reveal-on-scroll">
+                <span class="section-tag mono">// INTELLIGENCE BRIEF</span>
+                <h2 class="section-title">Frequently <span class="serif-italic">Asked</span></h2>
+            </div>
+            <div class="faq-accordion reveal-on-scroll">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-q-tag mono">Q-01</span>
+                        <h3>Which platforms are under surveillance?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We actively monitor 52+ networks including Instagram, Twitter/X, Reddit, Telegram, Discord,
+                            Google Drive, Mega, torrent trackers, and custom-built leak forums. If it exists on the
+                            internet, we are watching it.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-q-tag mono">Q-02</span>
+                        <h3>How quickly is a takedown executed?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>On major platforms: 2–24 hours. For non-compliant or bulletproof hosts, we escalate to
+                            upstream ISPs and CDN providers — typically resolved within 48–72 hours.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-q-tag mono">Q-03</span>
+                        <h3>What if they re-upload?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Every removed asset is cryptographically fingerprinted. Re-upload attempts across any
+                            monitored network trigger an automatic secondary strike with no further input required from
+                            you. The cycle ends permanently.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-q-tag mono">Q-04</span>
+                        <h3>Do you work with individuals or agencies?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Both. We protect individual creators, OFM agencies, course operators, and corporate brand IP.
+                            Case volume and protection scope are tailored per engagement. Contact us with your situation
+                            and we will scope the right operation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section section-contact" id="contact">
+        <div class="contact-bg-wrap">
+            <img src="assets/phone on table.jpeg" alt="" class="contact-bg-img" aria-hidden="true">
+            <div class="contact-bg-overlay"></div>
+        </div>
+        <div class="section-inner reveal-on-scroll center-text">
+            <span class="section-tag mono">// INITIATE OPERATION</span>
+            <h2 class="contact-headline">
+                Ready to take back<br>
+                <span class="serif-italic">what is yours?</span>
+            </h2>
+            <p class="contact-sub">Submit your case details securely. We will respond within 24 hours with an
+                operational
+                assessment and next steps.</p>
+            <a href="https://tally.so/r/rjlpyL" target="_blank" class="btn btn-red btn-large">Fill The Form</a>
+            <div class="contact-comms mono">
+                SECURE COMMS: <a href="mailto:takedowns@kohza.org">takedowns@kohza.org</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <span class="footer-logo mono">[KOHZA]</span>
+                <span class="footer-meta mono">DIGITAL ENFORCEMENT BUREAU // EST. 2024</span>
+            </div>
+            <div class="footer-right">
+                <a href="#" class="mono">Privacy</a>
+                <a href="#" class="mono">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== VIDEO MODAL ========== -->
+    <div class="video-modal-overlay" id="video-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="video-modal-inner">
+            <button class="video-modal-close" id="video-modal-close" aria-label="Close video">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                    <path stroke-linecap="round" d="M6 6l12 12M6 18L18 6" />
+                </svg>
+            </button>
+            <video id="modal-video" class="video-modal-player" src="assets/richard-testimonial.mp4" playsinline
+                disablePictureInPicture controlsList="nodownload noremoteplayback" controls></video>
+        </div>
+    </div>
+
+    <style>
+        /* === VIDEO PREVIEW WRAPPER === */
+        .video-preview-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* === PLAY OVERLAY (center) === */
+        .video-play-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(8, 8, 8, 0.35);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 300ms ease;
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+        }
+
+        .video-preview-wrap:hover .video-play-overlay {
+            opacity: 1;
+        }
+
+        .video-play-overlay svg {
+            background: rgba(204, 0, 0, 0.9);
+            border-radius: 50%;
+            padding: 10px;
+            width: 52px;
+            height: 52px;
+            transition: transform 200ms ease, background 200ms ease;
+        }
+
+        .video-play-overlay:hover svg {
+            transform: scale(1.1);
+            background: var(--red);
+        }
+
+        /* === UNMUTE BTN (bottom-right) === */
+        .video-unmute-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            background: rgba(8, 8, 8, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 200ms ease, border-color 200ms ease;
+        }
+
+        .video-unmute-btn:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+
+        /* === VIDEO MODAL === */
+        .video-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .video-modal-overlay.is-open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .video-modal-inner {
+            position: relative;
+            width: 90vw;
+            max-width: 500px;
+            transform: scale(0.88) translateY(20px);
+            transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .video-modal-overlay.is-open .video-modal-inner {
+            transform: scale(1) translateY(0);
+        }
+
+        .video-modal-player {
+            width: 100%;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            background: #000;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 200ms ease;
+        }
+
+        .video-modal-close:hover {
+            background: var(--red);
+            border-color: var(--red);
+        }
+    </style>
+
+    <script src="script.js"></script>
+    <script>
+        // === CUSTOM VIDEO PLAYER LOGIC ===
+        (function () {
+            const previewVid = document.getElementById('preview-video');
+            const unmuteBtn = document.getElementById('video-unmute-btn');
+            const iconMuted = document.getElementById('icon-muted');
+            const iconUnmuted = document.getElementById('icon-unmuted');
+            const playBtn = document.getElementById('video-play-btn');
+            const modal = document.getElementById('video-modal');
+            const modalVid = document.getElementById('modal-video');
+            const closeBtn = document.getElementById('video-modal-close');
+
+            if (!previewVid) return;
+
+            // --- Unmute toggle on preview ---
+            unmuteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                previewVid.muted = !previewVid.muted;
+                iconMuted.style.display = previewVid.muted ? 'block' : 'none';
+                iconUnmuted.style.display = previewVid.muted ? 'none' : 'block';
+            });
+
+            // --- Open modal ---
+            function openModal() {
+                modal.setAttribute('aria-hidden', 'false');
+                modal.classList.add('is-open');
+                previewVid.muted = true;
+                iconMuted.style.display = 'block';
+                iconUnmuted.style.display = 'none';
+                // Seek to start and play with sound
+                modalVid.currentTime = 0;
+                modalVid.play();
+                document.body.style.overflow = 'hidden';
+            }
+
+            // --- Close modal ---
+            function closeModal() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                modalVid.pause();
+                modalVid.currentTime = 0;
+                document.body.style.overflow = '';
+            }
+
+            playBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+
+            // Close on backdrop click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Close on ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+            });
+        })();
+    </script>
+</body>
+
+</html>
