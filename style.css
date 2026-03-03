@@ -268,7 +268,7 @@ video {
 }
 
 .mobile-menu {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -282,7 +282,9 @@ video {
     gap: 32px;
     font-family: var(--font-mono);
     opacity: 0;
-    transition: opacity var(--base);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--base), visibility var(--base);
 }
 
 .mobile-menu a {
@@ -293,7 +295,9 @@ video {
 }
 
 .mobile-menu.active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
 }
 
 /* === HERO === */
@@ -1116,9 +1120,25 @@ video {
         gap: 8px !important;
     }
 }
+
 /* === LENIS SMOOTH SCROLLING === */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-.lenis.lenis-smooth iframe { pointer-events: none; }
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
