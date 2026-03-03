@@ -6,6 +6,29 @@
 (function () {
     'use strict';
 
+    // === PREMIUM SMOOTH SCROLL (LENIS) ===
+    let lenis;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            duration: 1.8,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Cinematic easing
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    }
+
     // === SCROLL REVEAL ===
     const reveals = document.querySelectorAll('.reveal-on-scroll');
     const observer = new IntersectionObserver((entries) => {
@@ -67,7 +90,11 @@
                     if (target) {
                         e.preventDefault();
                         const offset = (nav ? nav.offsetHeight : 0) + 10;
-                        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+                        if (lenis) {
+                            lenis.scrollTo(target, { offset: -offset, duration: 1.5 });
+                        } else {
+                            window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+                        }
                     }
                 }
             });
