@@ -59,9 +59,11 @@
             if (isOpen) {
                 spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
                 spans[1].style.transform = 'rotate(-45deg) translate(0, -2px)';
+                setTimeout(() => menu.style.opacity = '1', 10);
             } else {
                 spans[0].style.transform = '';
                 spans[1].style.transform = '';
+                menu.style.opacity = '0';
             }
         });
 
@@ -69,6 +71,7 @@
         menu.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', () => {
                 menu.classList.remove('active');
+                menu.style.opacity = '0';
                 toggle.querySelectorAll('span').forEach(s => s.style.transform = '');
             });
         });
