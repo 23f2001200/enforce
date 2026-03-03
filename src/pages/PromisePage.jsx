@@ -106,16 +106,17 @@ export default function PromisePage() {
                     height: 100%;
                     object-fit: cover;
                     object-position: center 30%;
-                    filter: brightness(0.45) contrast(1.1);
+                    filter: brightness(0.3) contrast(1.1);
+                    opacity: 0.5;
                 }
                 .promise-bg-overlay {
                     position: absolute;
                     inset: 0;
                     background: linear-gradient(
                         to bottom,
-                        rgba(5,5,8,0.2) 0%,
-                        rgba(5,5,8,0.55) 50%,
-                        rgba(5,5,8,0.92) 85%,
+                        rgba(5,5,8,0.4) 0%,
+                        rgba(5,5,8,0.7) 50%,
+                        rgba(5,5,8,0.95) 85%,
                         var(--bg-body, #060608) 100%
                     );
                 }
