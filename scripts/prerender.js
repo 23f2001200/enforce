@@ -1,63 +1,79 @@
-import puppeteer from 'puppeteer';
-import handler from 'serve-handler';
-import http from 'http';
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
 
-const routes = [
-    '/',
-    '/promise',
-    '/ofm-creators',
-    '/info-products',
-    '/remove-leaks/telegram',
-    '/remove-leaks/instagram',
-    '/remove-leaks/onlyfans',
-    '/remove-leaks/discord',
-    '/remove-leaks/mega',
-    '/remove-leaks/reddit'
-];
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const toAbsolute = (p) => path.resolve(__dirname, '..', p)
 
-const distDir = path.resolve('dist');
+async function build() {
+    try {
+        console.log('Starting native Vite SSR prerender...');
+        const template = fs.readFileSync(toAbsolute('dist/static/index.html'), 'utf-8')
+        // Import the SSR bundle produced by Vite using proper file URL formatting for Windows
+        const serverEntryPath = toAbsolute('dist/server/entry-server.js')
+        const { render } = await import(pathToFileURL(serverEntryPath).href)
 
-async function run() {
-    const server = http.createServer((request, response) => {
-        return handler(request, response, {
-            public: distDir,
-            rewrites: [{ source: '**', destination: '/index.html' }]
-        });
-    });
+        // Define our Sitemap / Routes to build
+        const routes = [
+            '/',
+            '/promise',
+            '/ofm-creators',
+            '/info-products',
+            '/remove-leaks/telegram',
+            '/remove-leaks/instagram',
+            '/remove-leaks/onlyfans',
+            '/remove-leaks/discord',
+            '/remove-leaks/mega',
+            '/remove-leaks/reddit'
+        ];
 
-    server.listen(5000, async () => {
-        console.log('Local server started on port 5000 for prerendering');
-        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        for (const url of routes) {
+            console.log(`Prerendering ${url}...`);
+            const helmetContext = {}
 
-        for (const route of routes) {
-            console.log(`Prerendering ${route}...`);
-            const page = await browser.newPage();
-            // Wait for network to be idle, meaning React loaded and ran
-            await page.goto(`http://localhost:5000${route}`, { waitUntil: 'networkidle0', timeout: 30000 });
+            // Execute React Server-Side Rendering (fast, no browser needed)
+            const appHtml = render(url, helmetContext)
 
-            // Wait an extra sec to ensure Helmet tags are injected
-            await new Promise(r => setTimeout(r, 1000));
+            let html = template.replace(`<!--app-html-->`, appHtml)
 
-            let html = await page.content();
-
-            // The HTML still contains the script tags which will re-hydrate. This is fine.
-
-            const filePath = path.join(distDir, route, 'index.html');
-            const dirPath = path.dirname(filePath);
-            if (!fs.existsSync(dirPath)) {
-                fs.mkdirSync(dirPath, { recursive: true });
+            // Inject React-Helmet Async tags dynamically
+            if (helmetContext.helmet) {
+                const helmet = helmetContext.helmet
+                const helmetTags = `
+                    ${helmet.title.toString()}
+                    ${helmet.priority.toString()}
+                    ${helmet.meta.toString()}
+                    ${helmet.link.toString()}
+                    ${helmet.script.toString()}
+                `
+                html = html.replace('<!--helmet-tags-->', helmetTags)
+            } else {
+                html = html.replace('<!--helmet-tags-->', '')
             }
 
-            fs.writeFileSync(filePath, html);
-            await page.close();
+            const filePath = toAbsolute(`dist/static${url === '/' ? '/index.html' : `${url}/index.html`}`)
+            fs.mkdirSync(path.dirname(filePath), { recursive: true })
+            fs.writeFileSync(filePath, html)
         }
 
-        await browser.close();
-        server.close();
-        console.log('Prerendering complete!');
-    });
+        console.log('Finalizing build directory...');
+
+        const staticDir = toAbsolute('dist/static')
+        const serverDir = toAbsolute('dist/server')
+        const distRoot = toAbsolute('dist')
+
+        // Copy static files into root dist
+        fs.cpSync(staticDir, distRoot, { recursive: true })
+
+        // Wipe original subdirectories
+        fs.rmSync(staticDir, { recursive: true, force: true })
+        fs.rmSync(serverDir, { recursive: true, force: true })
+
+        console.log('✅ Native SSR Prerendering complete! Ready for Vercel deployment.');
+    } catch (e) {
+        console.error('Error during prerendering:', e)
+        process.exit(1)
+    }
 }
 
-run();
+build();

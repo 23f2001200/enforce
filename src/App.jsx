@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -46,7 +46,7 @@ function BodyClassManager() {
     return null
 }
 
-function AppShell() {
+export default function App() {
     useLenis()
     return (
         <>
@@ -62,13 +62,5 @@ function AppShell() {
             </Routes>
             <Footer />
         </>
-    )
-}
-
-export default function App() {
-    return (
-        <Router>
-            <AppShell />
-        </Router>
     )
 }
