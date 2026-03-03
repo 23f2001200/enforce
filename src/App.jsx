@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import PromisePage from './pages/PromisePage'
 import OfmCreatorsPage from './pages/OfmCreatorsPage'
 import InfoProductsPage from './pages/InfoProductsPage'
+import PlatformTakedownPage from './pages/PlatformTakedownPage'
 import useLenis from './hooks/useLenis'
 
 // Scroll to top on route change, and handle hash anchors from other pages
@@ -57,6 +58,7 @@ function AppShell() {
                 <Route path="/promise" element={<PromisePage />} />
                 <Route path="/ofm-creators" element={<OfmCreatorsPage />} />
                 <Route path="/info-products" element={<InfoProductsPage />} />
+                <Route path="/remove-leaks/:platformId" element={<PlatformTakedownPage />} />
             </Routes>
             <Footer />
         </>

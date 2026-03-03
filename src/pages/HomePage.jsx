@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 import VideoPlayer from '../components/VideoPlayer'
 import FaqAccordion from '../components/FaqAccordion'
@@ -9,24 +10,82 @@ export default function HomePage() {
     // Video modal inline styles (moved from inline <style> in original HTML)
     return (
         <>
+            <Helmet>
+                <title>Digital Enforcement & DMCA Takedowns | KOHZA</title>
+                <meta name="description" content="KOHZA is a private digital enforcement unit specializing in DMCA takedowns, unauthorized content removal, and immediate platform-level suppression of leaked material on Telegram, Reddit, and cyberlockers." />
+                <script type="application/ld+json">
+                    {`
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "Organization",
+                            "name": "KOHZA",
+                            "url": "https://kohza.org",
+                            "logo": "https://kohza.org/assets/-ultra-photoreal-cinematic-portrait-website-hero-b.jpeg",
+                            "description": "A private digital enforcement bureau specializing in DMCA takedowns and pirated content removal.",
+                            "contactPoint": {
+                                "@type": "ContactPoint",
+                                "email": "takedowns@kohza.org",
+                                "contactType": "customer service"
+                            }
+                        }
+                    `}
+                </script>
+                <script type="application/ld+json">
+                    {`
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": [
+                                {
+                                    "@type": "Question",
+                                    "name": "Which platforms are under surveillance?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "We actively monitor 52+ networks including Instagram, Twitter/X, Reddit, Telegram, Discord, Google Drive, Mega, torrent trackers, and custom-built leak forums. If it exists on the internet, we are watching it."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "How quickly is a takedown executed?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "On major platforms: 2–24 hours. For non-compliant or bulletproof hosts, we escalate to upstream ISPs and CDN providers — typically resolved within 48–72 hours."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "What if they re-upload?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Every removed asset is cryptographically fingerprinted. Re-upload attempts across any monitored network trigger an automatic secondary strike with no further input required from you. The cycle ends permanently."
+                                    }
+                                }
+                            ]
+                        }
+                    `}
+                </script>
+            </Helmet>
+
             <div className="scanlines" aria-hidden="true" />
+
+            <h1 className="sr-only">Digital Enforcement & DMCA Takedown Services | KOHZA</h1>
 
             {/* ========== HERO ========== */}
             <section className="hero" id="hero">
                 <div className="hero-bg-wrap">
-                    <img src="/assets/-ultra-photoreal-cinematic-portrait-website-hero-b.jpeg" alt="" className="hero-bg-img" aria-hidden="true" />
+                    <img src="/assets/-ultra-photoreal-cinematic-portrait-website-hero-b.jpeg" alt="Cinematic operative monitoring screens" className="hero-bg-img" aria-hidden="true" />
                     <div className="hero-bg-overlay" />
                 </div>
                 <div className="hero-inner reveal-on-scroll">
                     <div className="case-file-tag">
                         <span className="mono">CASE BUREAU — ACTIVE OPS</span>
                     </div>
-                    <h1 className="hero-headline">
+                    <h2 className="hero-headline">
                         We find them.<br />
                         <span className="serif-italic">We make them disappear.</span>
-                    </h1>
-                    <p className="hero-sub">
-                        Kohza is a private digital enforcement bureau. We operate in the shadows to hunt down pirated content, impersonators, and unauthorized reproductions of your intellectual property — and erase them permanently.
+                    </h2>
+                    <p className="hero-sub" data-nosnippet="false">
+                        <strong>What is KOHZA?</strong> KOHZA is a private digital enforcement unit specializing in DMCA takedowns, unauthorized content removal, and immediate platform-level suppression of leaked material. We maintain a 98% takedown success rate in under 24 hours across Telegram, Reddit, and mega-aggregators.
                     </p>
                     <div className="hero-actions">
                         <a href="#contact" className="btn btn-red btn-large">Open a Case</a>

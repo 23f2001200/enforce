@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 // OFM page replicates the full ofm-creators.html body content
@@ -94,6 +95,11 @@ export default function OfmCreatorsPage() {
 
     return (
         <>
+            <Helmet>
+                <title>OnlyFans Leak Removal & Creator Protection | KOHZA</title>
+                <meta name="description" content="The premier digital enforcement layer for elite creators and agencies. We eradicate leaks, destroy impersonators, and secure your revenue." />
+            </Helmet>
+
             <style>{`
         :root {
           --of-blue: #00AFF0;
@@ -238,6 +244,8 @@ export default function OfmCreatorsPage() {
 
             <div className="ambient-glow" style={{ top: '-200px', left: '-200px' }} />
 
+            <h1 className="sr-only">OnlyFans Leak Removal & DMCA Takedown Services for Creators</h1>
+
             {/* Hero */}
             <section className="ofm-hero" id="hero">
                 <div className="ofm-hero-bg parallax-bg" />
@@ -246,10 +254,10 @@ export default function OfmCreatorsPage() {
                         <div className="ofm-badge-dot" />
                         <span className="ofm-badge-text">Creator Protection Unit</span>
                     </div>
-                    <h1 className="ofm-headline">
+                    <h2 className="ofm-headline">
                         DEFEND YOUR
                         <span className="serif-italic">EXCLUSIVITY.</span>
-                    </h1>
+                    </h2>
                     <p className="ofm-subheadline">
                         Kohza is the premier digital enforcement layer for elite creators and agencies. We operate in the shadows to eradicate leaks, destroy impersonators, and secure your revenue.
                     </p>

@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "ai-seo": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "f53993e33de7a755602502030d0327ff02899c547a68a75fabcb8a0e3e2e1081"
+    },
     "brainstorming": {
       "source": "obra/superpowers",
       "sourceType": "github",
@@ -20,6 +25,21 @@
       "source": "inference-sh-9/skills",
       "sourceType": "github",
       "computedHash": "2dfccd5947b54cd60395a51d9962354dc636561b6c305a1b139279873dca854c"
+    },
+    "programmatic-seo": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "b675dbe0f0d25efbfa788f7b6e01a231d8f7333cacd19c1cf678cdbe7ea1514a"
+    },
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "1c7e3a6fb4173f4e505d69cb4c3861af3287d0eeca7a6797a60a0707b5961a96"
+    },
+    "site-architecture": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "eed0be7862737aa7ef0da29b16fc01c07013b2b03812a9d6d7b93513f1555099"
     },
     "ui-ux-pro-max": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",

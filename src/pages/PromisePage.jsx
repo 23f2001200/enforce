@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function PromisePage() {
@@ -5,7 +6,14 @@ export default function PromisePage() {
 
     return (
         <>
+            <Helmet>
+                <title>Our Promise & Methodology | KOHZA</title>
+                <meta name="description" content="We don't just hide links from Google; we remove pirated content from the source server. Review our digital enforcement promise here." />
+            </Helmet>
+
             <div className="scanlines" aria-hidden="true" />
+
+            <h1 className="sr-only">Our Promise: Permanent Takedown of Pirated Content</h1>
 
             {/* ========== HERO with bg image + promise text ========== */}
             <header className="promise-header">
@@ -25,10 +33,10 @@ export default function PromisePage() {
                         <span className="mono" style={{ color: 'var(--red)' }}>KOHZA // OUR PROMISE</span>
                     </div>
 
-                    <h1 className="promise-title">
+                    <h2 className="promise-title">
                         Our<br />
                         <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', color: 'var(--red)' }}>Promise.</span>
-                    </h1>
+                    </h2>
 
                     <div className="promise-content">
                         <p>When it comes down to it, there is only one thing that matters: <strong style={{ color: '#fff' }}>results.</strong></p>

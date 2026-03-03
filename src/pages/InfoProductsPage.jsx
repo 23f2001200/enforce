@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function InfoProductsPage() {
@@ -78,6 +79,11 @@ export default function InfoProductsPage() {
 
     return (
         <>
+            <Helmet>
+                <title>Course Piracy Takedown Services | KOHZA</title>
+                <meta name="description" content="Stop high-ticket course leaks. We hunt distributors and remove leaked PDFs and videos from Telegram, pirate forums, and cyberlockers." />
+            </Helmet>
+
             <style>{`
         :root{--edu-gold:#D4AF37;--edu-gold-glow:rgba(212,175,55,0.15);--bg-base:#050508;--bg-surface:#0a0b10;--bg-elevated:#12141c;--border-subtle:rgba(255,255,255,0.06);--border-highlight:rgba(255,255,255,0.12);}
         body.edu-page{background-color:var(--bg-base);}
@@ -186,6 +192,8 @@ export default function InfoProductsPage() {
 
             <div className="scanlines" aria-hidden="true" />
 
+            <h1 className="sr-only">Course Piracy Takedowns & Info Product Protection Services</h1>
+
             {/* Hero */}
             <header className="edu-hero">
                 <div className="edu-hero-bg" id="hero-bg" />
@@ -194,10 +202,10 @@ export default function InfoProductsPage() {
                         <div className="edu-badge-dot" />
                         <span className="edu-badge-text">EDU / Course Protection Protocol</span>
                     </div>
-                    <h1 className="edu-headline">
+                    <h2 className="edu-headline">
                         Stop the leaks.<br />
                         <span className="serif-italic" style={{ fontFamily: "'Playfair Display', serif" }}>Protect revenue.</span>
-                    </h1>
+                    </h2>
                     <p className="edu-subheadline">
                         Your high-ticket courses and masterminds are being ripped, bundled, and sold on Telegram within hours of launch. We hunt the distributors and nuke the leaks to protect your intellectual property.
                     </p>
