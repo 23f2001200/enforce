@@ -1,0 +1,72 @@
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import PromisePage from './pages/PromisePage'
+import OfmCreatorsPage from './pages/OfmCreatorsPage'
+import InfoProductsPage from './pages/InfoProductsPage'
+import useLenis from './hooks/useLenis'
+
+// Scroll to top on route change, and handle hash anchors from other pages
+function ScrollRestorer() {
+    const { pathname, hash } = useLocation()
+
+    useEffect(() => {
+        if (hash) {
+            // Small timeout to allow the new page to render before scrolling
+            setTimeout(() => {
+                const el = document.querySelector(hash)
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }, 100)
+        } else {
+            window.scrollTo(0, 0)
+        }
+    }, [pathname, hash])
+
+    return null
+}
+
+// Apply body class per page for page-specific CSS
+function BodyClassManager() {
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        document.body.className = ''
+        if (pathname === '/ofm-creators') {
+            document.body.classList.add('ofm-page', 'bureau-theme')
+        } else if (pathname === '/info-products') {
+            document.body.classList.add('edu-page', 'bureau-theme')
+        } else {
+            document.body.classList.add('bureau-theme')
+        }
+    }, [pathname])
+
+    return null
+}
+
+function AppShell() {
+    useLenis()
+    return (
+        <>
+            <ScrollRestorer />
+            <BodyClassManager />
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/promise" element={<PromisePage />} />
+                <Route path="/ofm-creators" element={<OfmCreatorsPage />} />
+                <Route path="/info-products" element={<InfoProductsPage />} />
+            </Routes>
+            <Footer />
+        </>
+    )
+}
+
+export default function App() {
+    return (
+        <Router>
+            <AppShell />
+        </Router>
+    )
+}
