@@ -1000,7 +1000,27 @@ video {
     }
 
     .section {
-        padding: 80px 24px;
+        padding: 60px 20px;
+    }
+
+    h1.hero-title,
+    h1.edu-headline,
+    h1.ofm-headline {
+        font-size: 2.7rem !important;
+        line-height: 1.1 !important;
+    }
+
+    h2.section-title,
+    h2.cta-headline {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    p.hero-subtitle,
+    p.edu-subheadline,
+    p.ofm-subtitle {
+        font-size: 1.1rem !important;
+        line-height: 1.5 !important;
     }
 
     .stats-inner {
@@ -1034,5 +1054,65 @@ video {
     .footer-inner {
         flex-direction: column;
         text-align: center;
+        gap: 20px;
+    }
+
+    .anatomy-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .anatomy-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .leak-overlay-card {
+        position: relative;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        transform: none !important;
+        margin-top: 15px;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .threats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .threat-span-2,
+    .threat-span-3 {
+        grid-column: span 1;
+    }
+
+    .quotes-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .surveillance-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .cta-content p.cta-subtitle {
+        font-size: 1.2rem !important;
+        padding: 0 10px;
+    }
+
+    /* Ensure the inline contact boxes fit securely */
+    .cta-content>div:nth-child(3) {
+        width: 100%;
+        padding: 1.5rem !important;
+        box-sizing: border-box;
+    }
+
+    .cta-content>div:nth-child(3)>div {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
     }
 }
