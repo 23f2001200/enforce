@@ -33,7 +33,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className={`nav${scrolled ? ' scrolled' : ''}`} id="nav">
+            <nav className={`nav${scrolled ? ' scrolled' : ''}`} id="nav" suppressHydrationWarning>
                 <div className="nav-inner">
                     <Link to="/" className="nav-logo">
                         <span className="logo-bracket">[</span>KOHZA<span className="logo-bracket">]</span>
@@ -80,7 +80,7 @@ export default function Navbar() {
             </nav>
 
             {/* Mobile Menu */}
-            <div className={`mobile-menu${menuOpen ? ' active' : ''}`} id="mobile-menu" style={{ opacity: menuOpen ? 1 : 0 }}>
+            <div className={`mobile-menu${menuOpen ? ' active' : ''}`} id="mobile-menu" style={{ opacity: menuOpen ? 1 : 0 }} suppressHydrationWarning>
                 <Link to="/promise" onClick={() => setMenuOpen(false)}>Our Promise</Link>
                 <a href="#testimonial" onClick={(e) => handleAnchorClick(e, '#testimonial')}>Cases</a>
                 <a href="#protocol" onClick={(e) => handleAnchorClick(e, '#protocol')}>Protocol</a>
