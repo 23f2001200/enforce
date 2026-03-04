@@ -53,7 +53,16 @@ export const platforms = {
         ],
         heroBg: '/assets/of-blue-neon.jpg',
         accentColor: '#00AFF0',
-        accentGlow: 'rgba(0, 175, 240, 0.4)'
+        accentGlow: 'rgba(0, 175, 240, 0.4)',
+        evidence: [
+            '/assets/of-evidence/of1.png',
+            '/assets/of-evidence/of2.png',
+            '/assets/of-evidence/of3.png',
+            '/assets/of-evidence/of4.png',
+            '/assets/of-evidence/of5.png',
+            '/assets/of-evidence/of6.png',
+            '/assets/of-evidence/of7.png'
+        ]
     },
     discord: {
         id: 'discord',

@@ -118,6 +118,16 @@ export default function PlatformTakedownPage() {
                 .timeline-item h3 { font-size:1.5rem; font-weight:500; margin-bottom:1rem; color:#fff; }
                 .timeline-item p { font-size:1.05rem; line-height:1.7; color:var(--text-secondary); }
                 
+                .evidence-section { background: var(--bg-body, #060608); margin-top: 2rem; }
+                .evidence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+                .evidence-card { background: #000; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden; position: relative; }
+                .evidence-img-container { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; }
+                .evidence-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); transition: all 0.5s ease; opacity: 0.7; }
+                .evidence-card:hover .evidence-img { filter: grayscale(0) contrast(1.1); opacity: 1; transform: scale(1.05); }
+                .evidence-watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+                .evidence-card:hover .evidence-watermark { opacity: 1; }
+                .evidence-watermark span { border: 2px solid var(--page-accent); color: var(--page-accent); padding: 8px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.15em; font-weight: bold; transform: rotate(-15deg); background: rgba(0,0,0,0.8); }
+                
                 .cta-block { text-align: center; padding: 100px 24px; background: #000; border-top: 1px solid rgba(255,255,255,0.1); }
                 .cta-block h2 { font-size: 3rem; color: #fff; margin-bottom: 1rem; }
                 .cta-block p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 3rem; font-size: 1.1rem; }
@@ -218,6 +228,33 @@ export default function PlatformTakedownPage() {
                     </div>
                 </div>
             </section>
+
+            {platform.evidence && platform.evidence.length > 0 && (
+                <section className="section-padding evidence-section">
+                    <div className="container">
+                        <div className="reveal text-center">
+                            <span className="section-eyebrow" style={{ justifyContent: 'center' }}>Declassified Targets</span>
+                            <h2 className="section-title text-center">Known {platform.name} Leaks Neutralized.</h2>
+                            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: '1.1rem' }}>
+                                A partial archive of unauthorized content distribution vectors tracked and destroyed by our operational teams.
+                            </p>
+                        </div>
+
+                        <div className="evidence-grid">
+                            {platform.evidence.map((imgSrc, i) => (
+                                <div key={i} className="evidence-card reveal" style={{ transitionDelay: `${i * 100}ms` }}>
+                                    <div className="evidence-img-container">
+                                        <img src={imgSrc} alt={`${platform.name} leak evidence ${i + 1}`} className="evidence-img" loading="lazy" />
+                                        <div className="evidence-watermark">
+                                            <span>NEUTRALIZED</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <section className="cta-block">
                 <div className="container reveal">
