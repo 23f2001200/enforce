@@ -247,6 +247,7 @@ video {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 36px;
 }
 
@@ -261,6 +262,71 @@ video {
 
 .nav-links a:hover {
     color: var(--text-primary);
+}
+
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-dropdown>span {
+    padding: 10px 0;
+}
+
+.nav-dropdown-content {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    background: rgba(8, 8, 8, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-red);
+    min-width: 260px;
+    z-index: 1001;
+    transform: translateY(10px);
+    transition: all var(--fast);
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 48px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-dropdown-header {
+    font-size: 0.65rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.nav-dropdown-group a {
+    font-size: 0.85rem;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    transition: color var(--fast), padding-left var(--fast);
+}
+
+.nav-dropdown-group a:hover {
+    color: var(--red);
+    padding-left: 4px;
 }
 
 .nav-toggle {
@@ -296,6 +362,8 @@ video {
     font-family: var(--font-mono);
     opacity: 0;
     transition: opacity var(--base);
+    overflow-y: auto;
+    padding: 100px 40px;
 }
 
 .mobile-menu a {
@@ -303,6 +371,28 @@ video {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-secondary);
+}
+
+.mobile-dropdown-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: -12px;
+    margin-bottom: 12px;
+}
+
+.mobile-dropdown-header {
+    font-size: 0.75rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+}
+
+.mobile-dropdown-group a {
+    font-size: 0.95rem;
+    text-transform: none;
+    color: var(--text-tertiary);
 }
 
 .mobile-menu.active {
