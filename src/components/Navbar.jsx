@@ -70,7 +70,7 @@ export default function Navbar() {
                         <Link to="/promise">Our Promise</Link>
                         <a href="#testimonial" onClick={(e) => handleAnchorClick(e, '#testimonial')}>Cases</a>
                         <a href="#protocol" onClick={(e) => handleAnchorClick(e, '#protocol')}>Protocol</a>
-                        <a href="https://blog.kohza.org" target="_blank" rel="noreferrer">Blog</a>
+                        <a href="https://blogs.kohza.org" target="_blank" rel="noreferrer">Blog</a>
                     </div>
                     <div className="nav-action">
                         <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="btn btn-red">
@@ -99,7 +99,7 @@ export default function Navbar() {
                 <Link to="/promise" onClick={() => setMenuOpen(false)}>Our Promise</Link>
                 <a href="#testimonial" onClick={(e) => handleAnchorClick(e, '#testimonial')}>Cases</a>
                 <a href="#protocol" onClick={(e) => handleAnchorClick(e, '#protocol')}>Protocol</a>
-                <a href="https://blog.kohza.org" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>Blog</a>
+                <a href="https://blogs.kohza.org" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>Blog</a>
 
                 <div className="mobile-dropdown-header">By Audience</div>
                 <div className="mobile-dropdown-group">
