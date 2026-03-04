@@ -7,7 +7,7 @@ import rehypeSlug from 'rehype-slug';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://blog.kohza.org',
+	site: 'https://blogs.kohza.org',
 	integrations: [mdx(), sitemap()],
 	markdown: {
 		rehypePlugins: [rehypeSlug],
