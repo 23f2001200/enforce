@@ -64,7 +64,10 @@ export default function PlatformTakedownPage() {
     }
 
     return (
-        <div className="platform-page">
+        <div className="platform-page" style={{
+            '--page-accent': platform.accentColor || 'var(--red, #ff3333)',
+            '--page-glow': platform.accentGlow || 'rgba(255, 51, 51, 0.5)'
+        }}>
             <Helmet>
                 <title>{platform.title} | KOHZA</title>
                 <meta name="description" content={platform.description} />
@@ -87,7 +90,7 @@ export default function PlatformTakedownPage() {
                 
                 .section-padding { padding: 120px 0; position: relative; }
                 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-                .section-eyebrow { font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; color:var(--red, #ff3333); text-transform:uppercase; margin-bottom:1.5rem; display:block; }
+                .section-eyebrow { font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; color:var(--page-accent); text-transform:uppercase; margin-bottom:1.5rem; display:block; }
                 .section-title { font-size:clamp(2.5rem,4vw,3.5rem); font-weight:500; line-height:1.1; margin-bottom:3rem; color:#fff; }
                 
                 .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
@@ -105,10 +108,13 @@ export default function PlatformTakedownPage() {
 
                 .timeline-container { max-width:800px; margin:0 auto; position:relative; padding:4rem 0; }
                 .timeline-line-bg { position:absolute; top:0; bottom:0; left:24px; width:1px; background:rgba(255,255,255,0.1); }
-                .timeline-line-fill { position:absolute; top:0; left:24px; width:1px; background:var(--red, #ff3333); height:0%; transition:height 0.1s ease-out; box-shadow:0 0 15px rgba(255,51,51,0.5); }
+                .timeline-line-fill { position:absolute; top:0; left:24px; width:1px; background:var(--page-accent); height:0%; transition:height 0.1s ease-out; box-shadow:0 0 15px var(--page-glow); }
                 .timeline-item { position:relative; padding-left:80px; margin-bottom:4rem; }
                 .timeline-node { position:absolute; left:17px; top:0; width:15px; height:15px; border-radius:50%; background:#000; border:1px solid rgba(255,255,255,0.2); transition:all 0.4s ease; display:flex; align-items:center; justify-content:center; }
-                .timeline-item.active .timeline-node { background:var(--red, #ff3333); border-color:var(--red, #ff3333); }
+                .timeline-item.active .timeline-node { background:var(--page-accent); border-color:var(--page-accent); }
+                
+                .platform-page .btn-red { background: var(--page-accent) !important; border-color: var(--page-accent) !important; box-shadow: 0 0 15px var(--page-glow) !important; color: #fff; }
+                .platform-page .btn-red:hover { background: transparent !important; color: var(--page-accent) !important; box-shadow: 0 0 20px var(--page-glow) !important; }
                 .timeline-item h3 { font-size:1.5rem; font-weight:500; margin-bottom:1rem; color:#fff; }
                 .timeline-item p { font-size:1.05rem; line-height:1.7; color:var(--text-secondary); }
                 

@@ -38,20 +38,22 @@ export const platforms = {
     onlyfans: {
         id: 'onlyfans',
         name: 'OnlyFans',
-        title: 'OnlyFans Leak Removal & Copyright Enforcement',
-        description: 'Elite creator protection. We hunt down leaked OnlyFans content across cyberlockers, forums, and Reddit, issuing immediate takedowns to protect your paywall exclusivity.',
+        title: 'Protect Your PPVs. Wipe OnlyFans Leaks from the Web.',
+        description: 'Your premium content belongs behind a paywall. We aggressively track, fingerprint, and eradicate leaked exclusivity across Reddit, Mega, and offshore cyberlockers so you stop losing subscribers.',
         stats: { time: '<24H', rate: '97%' },
         threats: [
-            'Subscribers ripping and resharing exclusive PPVs',
-            'Aggressive scraping by adult content aggregators',
-            'Links shared on public imageboards and forums'
+            'Subscribers ripping & freely distributing $50+ PPV content',
+            'Organized scraper bots auto-posting your sets to free adult forums',
+            'Viral Reddit threads stealing traffic that should be converting'
         ],
         solutions: [
-            'Cryptographic hashing of your content to track re-uploads',
-            'Bulk de-indexing from Google and Bing search results',
-            'Immediate host-level suspension of offending cyberlockers'
+            'Automated DMCA takedowns hitting cyberlockers at the source',
+            'Subreddit infiltration to nuke leak threads and ban offenders',
+            'Continuous cryptographic monitoring to instantly catch re-uploads'
         ],
-        heroBg: '/assets/phone on table.jpeg'
+        heroBg: '/assets/of-blue-neon.jpg',
+        accentColor: '#00AFF0',
+        accentGlow: 'rgba(0, 175, 240, 0.4)'
     },
     discord: {
         id: 'discord',
