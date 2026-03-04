@@ -1,0 +1,441 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const featuredPost = posts[0];
+const restPosts = posts.slice(1);
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+	<BaseHead
+		title="KOHZA — Intelligence Briefings"
+		description="Declassified tactics, platform vulnerabilities, and digital enforcement intelligence for creators and agencies."
+	/>
+	<style>
+		.page-wrap {
+			max-width: 960px;
+			margin: 0 auto;
+			padding: 80px 24px 100px;
+		}
+
+		/* -------- HERO BANNER -------- */
+		.hero {
+			padding: 72px 0 64px;
+			border-bottom: 1px solid var(--line);
+			margin-bottom: 64px;
+		}
+		.hero-label {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 24px;
+		}
+		.hero-label-bar {
+			width: 24px;
+			height: 2px;
+			background: var(--accent);
+			border-radius: 2px;
+		}
+		.hero-title {
+			font-family: var(--font-prose);
+			font-size: clamp(2.4rem, 5vw, 3.6rem);
+			font-weight: 300;
+			line-height: 1.15;
+			letter-spacing: -0.025em;
+			color: var(--text);
+			margin-bottom: 20px;
+			max-width: 680px;
+		}
+		.hero-title strong {
+			font-weight: 600;
+		}
+		.hero-bottom {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 20px;
+		}
+		.hero-desc {
+			font-size: 1rem;
+			color: var(--text-2);
+			line-height: 1.65;
+			max-width: 460px;
+		}
+		.hero-cta {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 0.85rem;
+			font-weight: 600;
+			color: #fff;
+			background: var(--accent);
+			padding: 11px 22px;
+			border-radius: 8px;
+			text-decoration: none;
+			white-space: nowrap;
+			transition: opacity var(--fast), transform var(--fast);
+		}
+		.hero-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+		/* -------- FEATURED POST -------- */
+		.section-label {
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.10em;
+			text-transform: uppercase;
+			color: var(--text-3);
+			margin-bottom: 20px;
+		}
+
+		.featured-card {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0;
+			border: 1px solid var(--line);
+			border-radius: 10px;
+			overflow: hidden;
+			margin-bottom: 64px;
+			text-decoration: none;
+			transition: border-color var(--fast), box-shadow var(--fast);
+		}
+		.featured-card:hover {
+			border-color: var(--line-strong);
+			box-shadow: var(--shadow-md);
+		}
+		.featured-visual {
+			background: #18181a;
+			padding: 48px 44px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			min-height: 280px;
+		}
+		.featured-tag {
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.10em;
+			text-transform: uppercase;
+			color: var(--accent);
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.featured-tag::before {
+			content: '';
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: var(--accent);
+			display: block;
+		}
+		.featured-title-dark {
+			font-family: var(--font-prose);
+			font-size: clamp(1.4rem, 3vw, 1.9rem);
+			font-weight: 400;
+			color: #ffffff;
+			line-height: 1.3;
+			letter-spacing: -0.02em;
+		}
+		.featured-content {
+			background: var(--bg-card);
+			padding: 40px 40px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.featured-meta {
+			font-size: 0.8rem;
+			color: var(--text-3);
+			margin-bottom: 16px;
+		}
+		.featured-excerpt {
+			font-size: 0.97rem;
+			color: var(--text-2);
+			line-height: 1.65;
+			margin-bottom: 28px;
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+		.featured-read {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.85rem;
+			font-weight: 600;
+			color: var(--accent);
+			text-decoration: none;
+		}
+		.featured-read .arrow {
+			transition: transform var(--fast);
+		}
+		.featured-card:hover .featured-read .arrow {
+			transform: translateX(4px);
+		}
+
+		/* -------- POST GRID -------- */
+		.posts-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+		}
+		.post-cell {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0;
+			border: 1px solid var(--line);
+			border-radius: 10px;
+			overflow: hidden;
+			text-decoration: none;
+			transition: border-color var(--fast), box-shadow var(--fast);
+		}
+		.post-cell:hover {
+			border-color: var(--line-strong);
+			box-shadow: var(--shadow-md);
+		}
+		.post-cell-visual {
+			background: #18181a;
+			padding: 40px 36px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			min-height: 200px;
+		}
+		.post-cell-tag {
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.10em;
+			text-transform: uppercase;
+			color: var(--accent);
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.post-cell-tag::before {
+			content: '';
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: var(--accent);
+			display: block;
+		}
+		.post-cell-title {
+			font-family: var(--font-prose);
+			font-size: clamp(1.1rem, 2vw, 1.5rem);
+			font-weight: 400;
+			color: #ffffff;
+			line-height: 1.3;
+			letter-spacing: -0.02em;
+		}
+		.post-cell-content {
+			background: var(--bg-card);
+			padding: 32px 32px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		.post-cell-excerpt {
+			font-size: 0.9rem;
+			color: var(--text-2);
+			line-height: 1.65;
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			flex: 1;
+			margin-bottom: 20px;
+		}
+		.post-cell-footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.post-cell-date {
+			font-size: 0.78rem;
+			color: var(--text-3);
+		}
+		.post-cell-read {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 0.85rem;
+			font-weight: 600;
+			color: var(--accent);
+		}
+		.post-cell-read .arrow {
+			transition: transform var(--fast);
+		}
+		.post-cell:hover .post-cell-read .arrow {
+			transform: translateX(4px);
+		}
+
+		/* -------- EMPTY STATE -------- */
+		.empty {
+			text-align: center;
+			padding: 80px 0;
+			color: var(--text-3);
+			font-size: 0.95rem;
+		}
+
+		/* -------- BRAND STRIP -------- */
+		.brand-strip {
+			margin-top: 80px;
+			padding: 40px;
+			background: var(--bg-muted);
+			border: 1px solid var(--line);
+			border-radius: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 24px;
+			flex-wrap: wrap;
+		}
+		.brand-strip-left h3 {
+			font-family: var(--font-prose);
+			font-size: 1.25rem;
+			font-weight: 400;
+			color: var(--text);
+			margin-bottom: 6px;
+			letter-spacing: -0.01em;
+		}
+		.brand-strip-left p {
+			font-size: 0.87rem;
+			color: var(--text-2);
+			line-height: 1.5;
+		}
+		.brand-strip-action {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 0.85rem;
+			font-weight: 600;
+			color: #fff;
+			background: var(--text);
+			padding: 11px 22px;
+			border-radius: 8px;
+			text-decoration: none;
+			white-space: nowrap;
+			transition: opacity var(--fast);
+			flex-shrink: 0;
+		}
+		.brand-strip-action:hover { opacity: 0.8; }
+
+		@media (max-width: 700px) {
+			.page-wrap { padding: 80px 20px 80px; }
+			.hero { padding: 48px 0 48px; }
+			.featured-card { grid-template-columns: 1fr; }
+			.featured-visual { min-height: 180px; padding: 32px 28px; }
+			.featured-content { padding: 28px; }
+			.post-cell { grid-template-columns: 1fr; }
+			.post-cell-visual { min-height: 140px; padding: 28px 24px; }
+			.post-cell-content { padding: 24px; }
+			.brand-strip { flex-direction: column; align-items: flex-start; gap: 20px; }
+		}
+	</style>
+</head>
+<body>
+<Header />
+<main class="page-wrap">
+
+	<!-- HERO -->
+	<section class="hero">
+		<div class="hero-label">
+			<span class="hero-label-bar"></span>
+			KOHZA Intelligence
+		</div>
+		<h1 class="hero-title">
+			What platforms don't<br /><strong>want you to know.</strong>
+		</h1>
+		<div class="hero-bottom">
+			<p class="hero-desc">
+				Enforcement tactics, piracy patterns, and deep-dives on digital content protection — for OnlyFans creators, course sellers, and agencies.
+			</p>
+			<a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" class="hero-cta">
+				Open a case
+				<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+			</a>
+		</div>
+	</section>
+
+	{posts.length === 0
+		? <div class="empty">No briefings published yet. Check back soon.</div>
+		: <>
+			<!-- FEATURED POST -->
+			{featuredPost && (
+				<div style="margin-bottom: 12px;">
+					<p class="section-label">Latest Briefing</p>
+				</div>
+				<a href={`/intel/${featuredPost.id}/`} class="featured-card">
+					<div class="featured-visual">
+						<span class="featured-tag">Intelligence Briefing</span>
+						<h2 class="featured-title-dark">{featuredPost.data.title}</h2>
+					</div>
+					<div class="featured-content">
+						<div>
+							<p class="featured-meta"><FormattedDate date={featuredPost.data.pubDate} /></p>
+							<p class="featured-excerpt">{featuredPost.data.description}</p>
+						</div>
+						<span class="featured-read">
+							Read full briefing <span class="arrow">→</span>
+						</span>
+					</div>
+				</a>
+			)}
+
+			<!-- REST OF POSTS -->
+			{restPosts.length > 0 && (
+				<div style="margin-bottom: 12px; margin-top: 48px;">
+					<p class="section-label">All Briefings</p>
+				</div>
+				<div class="posts-grid">
+					{restPosts.map((post) => (
+						<a href={`/intel/${post.id}/`} class="post-cell">
+							<div class="post-cell-visual">
+								<span class="post-cell-tag">Briefing</span>
+								<h2 class="post-cell-title">{post.data.title}</h2>
+							</div>
+							<div class="post-cell-content">
+								<p class="post-cell-excerpt">{post.data.description}</p>
+								<div class="post-cell-footer">
+									<span class="post-cell-date"><FormattedDate date={post.data.pubDate} /></span>
+									<span class="post-cell-read">Read full briefing <span class="arrow">→</span></span>
+								</div>
+							</div>
+						</a>
+					))}
+				</div>
+			)}
+
+			<!-- BRAND STRIP -->
+			<div class="brand-strip">
+				<div class="brand-strip-left">
+					<h3>Content leaking right now?</h3>
+					<p>KOHZA handles takedowns in under 24 hours — piracy, impersonation, leaked content, across every major platform.</p>
+				</div>
+				<a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" class="brand-strip-action">
+					Open a case →
+				</a>
+			</div>
+		</>
+	}
+
+</main>
+<Footer />
+</body>
+</html>

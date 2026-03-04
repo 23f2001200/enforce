@@ -1,0 +1,165 @@
+---
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="https://kohza.org/" class="logo" aria-label="KOHZA home">
+            <span class="logo-bracket">[</span><span class="logo-word">KOHZA</span><span class="logo-bracket">]</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="https://kohza.org/promise">Promise</a>
+            <a href="https://kohza.org/#testimonial">Cases</a>
+            <HeaderLink href="/">Blog</HeaderLink>
+        </nav>
+
+        <div class="header-actions">
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                <svg class="icon-light" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                <svg class="icon-dark" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" class="open-case-btn">
+                Open Case
+            </a>
+        </div>
+    </div>
+</header>
+
+<style>
+.site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 56px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    transition: background var(--mid), border-color var(--mid);
+}
+
+.header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Logo */
+.logo {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    white-space: nowrap;
+    text-decoration: none;
+}
+.logo-bracket {
+    color: var(--accent);
+}
+.logo-word {
+    color: var(--text);
+}
+
+/* Nav */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.nav-links a {
+    font-size: 0.83rem;
+    font-weight: 450;
+    color: var(--text-2);
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background var(--fast), color var(--fast);
+    text-decoration: none;
+}
+.nav-links a:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+}
+.nav-links :global(a.active) {
+    background: var(--bg-muted);
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* Right actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Theme toggle */
+.theme-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    border: 1px solid var(--line);
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--fast);
+    flex-shrink: 0;
+}
+.theme-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--line-strong);
+    color: var(--text);
+}
+
+/* Show sun in dark mode (to switch to light), show moon in light */
+.icon-light { display: block; }
+.icon-dark  { display: none; }
+:global([data-theme="dark"]) .icon-light { display: none; }
+:global([data-theme="dark"]) .icon-dark  { display: block; }
+
+/* Open Case button */
+.open-case-btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 7px 16px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 7px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity var(--fast), transform var(--fast);
+}
+.open-case-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+    .nav-links { display: none; }
+}
+</style>
+
+<script>
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+        btn.addEventListener('click', () => {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+</script>

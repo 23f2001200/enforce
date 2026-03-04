@@ -367,7 +367,7 @@ export default function PlatformTakedownPage() {
                     <div className="ptd-ev-sec">
                         <div className="ptd-sec">
                             <div className="ptd-label ptd-reveal">Declassified</div>
-                            <h2 className="ptd-ht ptd-reveal">Confirmed {platform.name} takedowns — real proof.</h2>
+                            <h2 className="ptd-ht ptd-reveal">{platform.evidenceHeadline || `Confirmed ${platform.name} takedowns — real proof.`}</h2>
                             <div className="ptd-ev-viewer ptd-reveal">
                                 {/* Featured large image */}
                                 <div className="ptd-ev-featured">
@@ -377,7 +377,7 @@ export default function PlatformTakedownPage() {
                                         className="ptd-ev-featured-img"
                                         key={lightbox ?? 0}
                                     />
-                                    <span className="ptd-ev-stamp-badge">NEUTRALIZED</span>
+                                    <span className="ptd-ev-stamp-badge">{platform.evidenceBadge || 'NEUTRALIZED'}</span>
                                     <div className="ptd-ev-featured-nav">
                                         <button
                                             className="ptd-ev-nav-btn"

@@ -1,0 +1,99 @@
+/* === KOHZA BLOG: GLOBAL CSS === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+
+/* ============ TOKENS – Light default ============ */
+:root {
+	--bg: #fafaf9;
+	--bg-card: #ffffff;
+	--bg-muted: #f3f3f1;
+	--bg-hover: #efefed;
+
+	--text: #1c1c1a;
+	--text-2: #5a5a56;
+	--text-3: #96968f;
+
+	--accent: #c0392b;
+	/* KOHZA red — kept, just cleaner */
+	--accent-bg: rgba(192, 57, 43, 0.08);
+
+	--line: #e4e4e0;
+	--line-strong: #d0d0cc;
+
+	--font-ui: 'Inter', system-ui, sans-serif;
+	--font-prose: 'Fraunces', Georgia, serif;
+
+	--ease: cubic-bezier(0.25, 1, 0.4, 1);
+	--fast: 160ms ease;
+	--mid: 320ms var(--ease);
+}
+
+/* ============ DARK MODE ============ */
+:root[data-theme="dark"] {
+	--bg: #141413;
+	--bg-card: #1c1c1a;
+	--bg-muted: #212120;
+	--bg-hover: #2a2a28;
+
+	--text: #e8e8e4;
+	--text-2: #9a9a94;
+	--text-3: #5c5c58;
+
+	--accent: #e05252;
+	--accent-bg: rgba(224, 82, 82, 0.10);
+
+	--line: #2a2a28;
+	--line-strong: #3a3a38;
+}
+
+/* ============ RESET ============ */
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	font-size: 16px;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	font-family: var(--font-ui);
+	background: var(--bg);
+	color: var(--text);
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	transition: background var(--mid), color var(--mid);
+}
+
+::selection {
+	background: var(--accent-bg);
+	color: var(--accent);
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	transition: color var(--fast);
+}
+
+img,
+video {
+	max-width: 100%;
+	display: block;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}

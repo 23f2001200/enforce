@@ -13,10 +13,19 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Close menu on route change
     useEffect(() => {
         setMenuOpen(false)
     }, [location])
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+        return () => { document.body.style.overflow = '' }
+    }, [menuOpen])
 
     const toggleMenu = () => setMenuOpen(prev => !prev)
 
@@ -61,6 +70,7 @@ export default function Navbar() {
                         <Link to="/promise">Our Promise</Link>
                         <a href="#testimonial" onClick={(e) => handleAnchorClick(e, '#testimonial')}>Cases</a>
                         <a href="#protocol" onClick={(e) => handleAnchorClick(e, '#protocol')}>Protocol</a>
+                        <a href="https://blog.kohza.org" target="_blank" rel="noreferrer">Blog</a>
                     </div>
                     <div className="nav-action">
                         <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="btn btn-red">
@@ -72,6 +82,11 @@ export default function Navbar() {
                         id="nav-toggle"
                         aria-label="Toggle menu"
                         onClick={toggleMenu}
+                        onTouchStart={(e) => {
+                            // Only trigger once (prevent onClick from firing immediately after)
+                            e.preventDefault();
+                            toggleMenu();
+                        }}
                     >
                         <span style={{ transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '' }} />
                         <span style={{ transform: menuOpen ? 'rotate(-45deg) translate(0, -2px)' : '' }} />
@@ -84,6 +99,7 @@ export default function Navbar() {
                 <Link to="/promise" onClick={() => setMenuOpen(false)}>Our Promise</Link>
                 <a href="#testimonial" onClick={(e) => handleAnchorClick(e, '#testimonial')}>Cases</a>
                 <a href="#protocol" onClick={(e) => handleAnchorClick(e, '#protocol')}>Protocol</a>
+                <a href="https://blog.kohza.org" target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>Blog</a>
 
                 <div className="mobile-dropdown-header">By Audience</div>
                 <div className="mobile-dropdown-group">

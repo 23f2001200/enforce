@@ -1,0 +1,702 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+type Props = CollectionEntry<'blog'>['data'];
+const { title, description, pubDate, updatedDate } = Astro.props;
+---
+
+<html lang="en">
+<head>
+    <BaseHead title={`${title} | KOHZA`} description={description} />
+    <style>
+        /* ------- Page ------- */
+        .article-page {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 96px 24px 100px;
+        }
+
+        /* ------- Back link ------- */
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: var(--text-3);
+            margin-bottom: 52px;
+            text-decoration: none;
+            transition: color var(--fast);
+        }
+        .back:hover { color: var(--text); }
+
+        /* ------- Article header ------- */
+        .art-header {
+            margin-bottom: 52px;
+            padding-bottom: 44px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .art-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .art-cat {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.10em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .art-sep { color: var(--text-3); font-size: 0.78rem; }
+        .art-date { font-size: 0.8rem; color: var(--text-3); }
+
+        .art-title {
+            font-family: var(--font-prose);
+            font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+
+        .art-desc {
+            font-size: 1.1rem;
+            color: var(--text-2);
+            line-height: 1.65;
+            margin-bottom: 28px;
+        }
+
+        .art-byline {
+            font-size: 0.82rem;
+            color: var(--text-3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .byline-dot {
+            width: 20px;
+            height: 1px;
+            background: var(--line-strong);
+        }
+
+        /* ------- Prose body (THIS is the main fix) ------- */
+        .prose {
+            /* Uses the full 680px container width */
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: var(--text-2);
+        }
+
+        .prose :global(h2) {
+            font-family: var(--font-prose);
+            font-size: 1.55rem;
+            font-weight: 400;
+            color: var(--text);
+            margin: 52px 0 16px;
+            letter-spacing: -0.015em;
+            line-height: 1.3;
+        }
+
+        .prose :global(h3) {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 36px 0 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .prose :global(p) {
+            margin-bottom: 22px;
+        }
+
+        .prose :global(ul),
+        .prose :global(ol) {
+            margin: 0 0 22px 0;
+            padding-left: 22px;
+        }
+
+        .prose :global(li) {
+            margin-bottom: 8px;
+            color: var(--text-2);
+        }
+
+        .prose :global(blockquote) {
+            font-family: var(--font-prose);
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: var(--text);
+            margin: 40px 0;
+            padding: 20px 24px;
+            border-left: 2px solid var(--accent);
+            background: var(--bg-muted);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .prose :global(strong) {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .prose :global(a) {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .prose :global(pre) {
+            background: #111110 !important;
+            padding: 20px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--line-strong);
+            overflow-x: auto;
+            margin: 32px 0;
+        }
+
+        .prose :global(pre code) {
+            background: transparent;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            color: #e6e6e6;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .prose :global(:not(pre) > code) {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85em;
+            background: var(--bg-muted);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2px 6px;
+            color: var(--accent);
+        }
+
+        /* Copy Button */
+        .prose :global(.code-block-wrapper) {
+            position: relative;
+            margin: 32px 0;
+        }
+        .prose :global(.code-block-wrapper pre) {
+            margin: 0;
+        }
+        .prose :global(.copy-btn) {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: var(--font-prose);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0;
+        }
+        .prose :global(.code-block-wrapper:hover .copy-btn) {
+            opacity: 1;
+        }
+        .prose :global(.copy-btn:hover) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .prose :global(.copy-btn.copied) {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .prose :global(hr) {
+            border: none;
+            border-top: 1px solid var(--line);
+            margin: 48px 0;
+        }
+
+        .prose :global(img) {
+            border-radius: 6px;
+            border: 1px solid var(--line);
+            margin: 32px 0;
+        }
+
+        /* ------- Table of Contents ------- */
+        .toc-block {
+            margin-bottom: 48px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .toc-header {
+            background: #18181a;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+        .toc-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .toc-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+        .toc-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .toc-count {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.07);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        .toc-chevron {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.35);
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+        .toc-chevron.open { transform: rotate(180deg); }
+        .toc-body {
+            background: var(--bg-card);
+            padding: 20px 24px;
+            overflow: hidden;
+            transition: max-height 0.25s ease;
+        }
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .toc-item a {
+            display: block;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            color: var(--text-2);
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+            line-height: 1.45;
+        }
+        .toc-item a:hover {
+            background: var(--bg-muted);
+            color: var(--text);
+        }
+        .toc-item.active a {
+            background: var(--accent-bg);
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .toc-item.is-h3 a {
+            padding-left: 24px;
+            font-size: 0.82rem;
+        }
+        .toc-sublist {
+            list-style: none;
+            margin: 4px 0 2px 10px;
+            padding: 0 0 0 12px;
+            border-left: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .toc-item.parent-active > a {
+            color: var(--text);
+            font-weight: 500;
+        }
+        .toc-item.parent-active > .toc-sublist {
+            border-left-color: var(--accent);
+        }
+
+        /* Tables */
+        .prose :global(table) {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.9rem;
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .prose :global(thead) {
+            background: var(--bg-muted);
+            border-bottom: 2px solid var(--line-strong);
+        }
+        .prose :global(th) {
+            text-align: left;
+            padding: 11px 16px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--text);
+            white-space: nowrap;
+        }
+        .prose :global(td) {
+            padding: 11px 16px;
+            color: var(--text-2);
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+        }
+        .prose :global(tr:last-child td) {
+            border-bottom: none;
+        }
+        .prose :global(tbody tr:hover td) {
+            background: var(--bg-hover);
+        }
+        .prose :global(table) {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* ------- CTA block ------- */
+        .cta-block {
+            margin-top: 80px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--line-strong);
+        }
+        .cta-main {
+            background: #18181a;
+            padding: 44px 40px 36px;
+        }
+        .cta-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 18px;
+        }
+        .cta-eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.7); }
+        }
+        .cta-main h3 {
+            font-family: var(--font-prose);
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin: 0 0 12px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .cta-main p {
+            font-size: 0.97rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+            margin: 0 0 28px;
+            max-width: 420px;
+        }
+        .cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .cta-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--accent);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: opacity var(--fast), transform var(--fast);
+            white-space: nowrap;
+        }
+        .cta-btn-primary:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+        .cta-btn-secondary {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            transition: color var(--fast);
+        }
+        .cta-btn-secondary:hover { color: rgba(255,255,255,0.75); }
+        /* Stats row at bottom */
+        .cta-stats {
+            background: #111110;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding: 20px 40px;
+            display: flex;
+            gap: 0;
+        }
+        .cta-stat {
+            flex: 1;
+            padding: 0 24px 0 0;
+            border-right: 1px solid rgba(255,255,255,0.08);
+            margin-right: 24px;
+        }
+        .cta-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+        .cta-stat-value {
+            font-family: var(--font-prose);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            display: block;
+        }
+        .cta-stat-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            display: block;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .article-page { padding: 88px 20px 80px; }
+            .cta-main { padding: 32px 24px 28px; }
+            .cta-stats { padding: 16px 24px; flex-wrap: wrap; gap: 16px; }
+            .cta-stat { border-right: none; margin-right: 0; flex: none; width: 45%; }
+            .art-title { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+
+<body>
+<Header />
+<main class="article-page">
+
+    <a href="/" class="back">
+        ← All briefings
+    </a>
+
+    <article>
+        <header class="art-header">
+            <div class="art-meta">
+                <span class="art-cat">Intelligence Briefing</span>
+                <span class="art-sep">·</span>
+                <span class="art-date">
+                    <FormattedDate date={pubDate} />
+                    {updatedDate && <> · Updated <FormattedDate date={updatedDate} /></>}
+                </span>
+            </div>
+            <h1 class="art-title">{title}</h1>
+            <p class="art-desc">{description}</p>
+            <div class="art-byline">
+                <span class="byline-dot"></span>
+                By KOHZA Intelligence Unit
+            </div>
+        </header>
+
+        <div class="prose">
+            <div class="toc-block" id="toc-block" style="display:none">
+                <div class="toc-header" id="toc-header">
+                    <div class="toc-header-left">
+                        <span class="toc-dot"></span>
+                        <span class="toc-title">In this briefing</span>
+                        <span class="toc-count" id="toc-count"></span>
+                    </div>
+                    <span class="toc-chevron open" id="toc-chevron">▲</span>
+                </div>
+                <div class="toc-body" id="toc-body">
+                    <ul class="toc-list" id="toc-list"></ul>
+                </div>
+            </div>
+            <slot />
+        </div>
+
+        <div class="cta-block">
+            <div class="cta-main">
+                <span class="cta-eyebrow">
+                    <span class="cta-eyebrow-dot"></span>
+                    Active right now
+                </span>
+                <h3>Still fighting this yourself?</h3>
+                <p>KOHZA handles host-level takedowns — piracy, impersonation, leaks — in under 24 hours across every major platform. You don't lift a finger.</p>
+                <div class="cta-actions">
+                    <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" class="cta-btn-primary" style="color:#ffffff;text-decoration:none;">
+                        Open a case
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://kohza.org" class="cta-btn-secondary" style="text-decoration:none;">Learn how it works</a>
+                </div>
+            </div>
+            <div class="cta-stats">
+                <div class="cta-stat">
+                    <span class="cta-stat-value">&lt; 24h</span>
+                    <span class="cta-stat-label">Average removal time</span>
+                </div>
+                <div class="cta-stat">
+                    <span class="cta-stat-value">99.8%</span>
+                    <span class="cta-stat-label">Takedown success rate</span>
+                </div>
+                <div class="cta-stat">
+                    <span class="cta-stat-value">1,000+</span>
+                    <span class="cta-stat-label">Platforms monitored</span>
+                </div>
+            </div>
+        </div>
+
+    </article>
+
+</main>
+<Footer />
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* ---- Copy buttons ---- */
+    document.querySelectorAll('.prose pre').forEach((pre) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-btn';
+        copyBtn.textContent = 'Copy';
+        copyBtn.addEventListener('click', async () => {
+            const code = pre.querySelector('code');
+            if (!code) return;
+            try {
+                await navigator.clipboard.writeText(code.innerText);
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('copied'); }, 2000);
+            } catch (err) { console.error('Failed to copy:', err); }
+        });
+        wrapper.appendChild(copyBtn);
+    });
+
+    /* ---- Table of Contents ---- */
+    const prose = document.querySelector('.prose');
+    const tocBlock = document.getElementById('toc-block');
+    const tocList  = document.getElementById('toc-list');
+    const tocCount = document.getElementById('toc-count');
+    const tocHeader  = document.getElementById('toc-header');
+    const tocBody    = document.getElementById('toc-body');
+    const tocChevron = document.getElementById('toc-chevron');
+
+    if (!prose || !tocBlock) return;
+
+    // Grab all h2 + h3 inside .prose that are NOT inside .toc-block
+    const headings = [...prose.querySelectorAll('h2, h3')].filter(h => !tocBlock.contains(h));
+    if (headings.length < 2) return; // hide if barely any headings
+
+    // Ensure every heading has an id
+    headings.forEach((h, i) => {
+        if (!h.id) {
+            h.id = h.textContent.trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-|-$/g, '') || `section-${i}`;
+        }
+    });
+
+    // Build nested list: h2s as top-level, h3s nested under their parent h2
+    let currentSubList = null;
+    headings.forEach(h => {
+        const li = document.createElement('li');
+        li.className = 'toc-item';
+        const a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent.trim();
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        li.appendChild(a);
+
+        if (h.tagName === 'H2') {
+            tocList.appendChild(li);
+            // Create a sub-list container for any following h3s
+            currentSubList = document.createElement('ul');
+            currentSubList.className = 'toc-sublist';
+            li.appendChild(currentSubList);
+        } else if (h.tagName === 'H3') {
+            li.classList.add('is-h3');
+            if (currentSubList) {
+                currentSubList.appendChild(li);
+            } else {
+                // Orphan h3 with no preceding h2 — just add top-level
+                tocList.appendChild(li);
+            }
+        }
+    });
+
+    // Remove empty sub-lists
+    tocList.querySelectorAll('.toc-sublist').forEach(sl => {
+        if (!sl.children.length) sl.remove();
+    });
+
+    tocCount.textContent = headings.length;
+    tocBlock.style.display = '';
+
+    // Collapse toggle
+    let isOpen = true;
+    tocHeader.addEventListener('click', () => {
+        isOpen = !isOpen;
+        tocBody.style.display = isOpen ? '' : 'none';
+        tocChevron.classList.toggle('open', isOpen);
+    });
+
+    // Scroll spy — all .toc-item elements (including nested h3s)
+    const allItems = [...tocList.querySelectorAll('.toc-item')];
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                allItems.forEach(item => {
+                    const itemLink = item.querySelector(':scope > a');
+                    const active = itemLink?.getAttribute('href') === '#' + id;
+                    item.classList.toggle('active', active);
+                    // If a nested h3 is active, also highlight its parent h2 li
+                    if (active && item.classList.contains('is-h3')) {
+                        item.closest('#toc-list > .toc-item')?.classList.add('parent-active');
+                    }
+                });
+                // Clear parent-active when switching
+                allItems.forEach(item => {
+                    if (!item.classList.contains('is-h3')) {
+                        const hasActiveChild = item.querySelector('.toc-item.active');
+                        item.classList.toggle('parent-active', !!hasActiveChild);
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+    headings.forEach(h => observer.observe(h));
+
+});
+</script>
+
+</body>
+</html>

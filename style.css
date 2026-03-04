@@ -253,10 +253,17 @@ video {
 .nav-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    margin-right: -10px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-toggle span {

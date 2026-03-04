@@ -107,6 +107,8 @@ export const platforms = {
         heroBg: '/assets/of-hero-bg.jpeg',
         accentColor: '#00AFF0',
         accentGlow: 'rgba(0, 175, 240, 0.4)',
+        evidenceHeadline: 'Proof that your content is being actively leaked in mass.',
+        evidenceBadge: 'ACTIVE LEAKS',
         evidence: [
             '/assets/of-evidence/of1.png',
             '/assets/of-evidence/of2.png',
