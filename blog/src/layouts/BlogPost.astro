@@ -4,6 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import SidebarForm from '../components/SidebarForm.astro';
 import { SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -16,9 +17,33 @@ const { title, description, pubDate, updatedDate } = Astro.props;
     <style>
         /* ------- Page ------- */
         .article-page {
-            max-width: 680px;
+            max-width: 1080px;
             margin: 0 auto;
             padding: 96px 24px 100px;
+        }
+
+        .article-layout {
+            display: flex;
+            gap: 48px;
+            align-items: flex-start;
+        }
+
+        .article-content {
+            flex: 1;
+            min-width: 0;
+            max-width: 680px;
+        }
+
+        .article-sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            display: none;
+        }
+
+        @media (min-width: 960px) {
+            .article-sidebar {
+                display: block;
+            }
         }
 
         /* ------- Back link ------- */
@@ -487,6 +512,17 @@ const { title, description, pubDate, updatedDate } = Astro.props;
             .cta-stat { border-right: none; margin-right: 0; flex: none; width: 45%; }
             .art-title { font-size: 1.7rem; }
         }
+
+        .mobile-form-container {
+            margin-top: 64px;
+            display: block;
+        }
+
+        @media (min-width: 960px) {
+            .mobile-form-container {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -498,8 +534,10 @@ const { title, description, pubDate, updatedDate } = Astro.props;
         ← All briefings
     </a>
 
-    <article>
-        <header class="art-header">
+    <div class="article-layout">
+        <div class="article-content">
+            <article>
+                <header class="art-header">
             <div class="art-meta">
                 <span class="art-cat">Intelligence Briefing</span>
                 <span class="art-sep">·</span>
@@ -564,8 +602,18 @@ const { title, description, pubDate, updatedDate } = Astro.props;
                 </div>
             </div>
         </div>
+        
+        <div class="mobile-form-container">
+            <SidebarForm />
+        </div>
 
     </article>
+    </div>
+    
+    <aside class="article-sidebar">
+        <SidebarForm />
+    </aside>
+    </div>
 
 </main>
 <Footer />

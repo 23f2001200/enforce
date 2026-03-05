@@ -1,0 +1,272 @@
+---
+---
+
+<div class="sidebar-form-widget">
+    <div class="sf-header">
+        <h3 class="sf-title">Want help with piracy?</h3>
+        <p class="sf-desc">Did your course get leaked? Submit your case details below and our operatives will be in touch securely within 24 hours.</p>
+    </div>
+    
+    <form action="https://formspree.io/f/xwvngdel" method="POST" class="sf-form" id="sidebarForm">
+        <div class="sf-group">
+            <label for="sf-name" class="sf-label mono">ALIAS / NAME *</label>
+            <input type="text" id="sf-name" name="name" class="sf-input" required placeholder="John Doe" autocomplete="name">
+        </div>
+        
+        <div class="sf-group">
+            <label for="sf-email" class="sf-label mono">SECURE EMAIL *</label>
+            <input type="email" id="sf-email" name="email" class="sf-input" required placeholder="contact@domain.com" autocomplete="email">
+        </div>
+
+        <div class="sf-group">
+            <label for="sf-category" class="sf-label mono">CREATOR CATEGORY *</label>
+            <div class="sf-select-wrapper">
+                <select id="sf-category" name="category" class="sf-input sf-select" required>
+                    <option value="" disabled selected>Select your category...</option>
+                    <option value="OnlyFans/Adult">OnlyFans / Adult Creator</option>
+                    <option value="Course/Education">Course Creator / Education</option>
+                    <option value="Software/SaaS">Software / SaaS</option>
+                    <option value="Agency/Management">Agency / Management</option>
+                    <option value="Other">Other</option>
+                </select>
+                <svg class="sf-select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+        </div>
+        
+        <div class="sf-group">
+            <label for="sf-message" class="sf-label mono">CASE DETAILS</label>
+            <textarea id="sf-message" name="message" class="sf-input sf-textarea" required placeholder="Describe the unauthorized distribution..."></textarea>
+        </div>
+        
+        <button type="submit" class="sf-submit" id="sfSubmitBtn">
+            <span class="sf-submit-text">Submit</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="sf-submit-icon"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <div id="sf-status" class="sf-status-message"></div>
+    </form>
+</div>
+
+<style>
+    .sidebar-form-widget {
+        background: var(--bg-card, #111110);
+        border: 1px solid var(--line-strong, rgba(255, 255, 255, 0.1));
+        border-radius: 12px;
+        padding: 32px 24px;
+        position: sticky;
+        top: 100px;
+    }
+
+    .sf-header {
+        margin-bottom: 24px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.05));
+    }
+
+    .sf-tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        color: var(--accent, #e53935);
+        margin-bottom: 12px;
+        font-family: 'IBM Plex Mono', Courier, monospace;
+    }
+
+    .sf-title {
+        font-family: var(--font-prose, 'Playfair Display', serif);
+        font-size: 1.85rem;
+        font-weight: 500;
+        line-height: 1.25;
+        color: var(--text, #fff);
+        margin: 0 0 12px 0;
+        letter-spacing: -0.01em;
+    }
+
+    .sf-desc {
+        font-size: 0.85rem;
+        color: var(--text-2, rgba(255, 255, 255, 0.6));
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    .sf-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .sf-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .sf-label {
+        font-family: 'IBM Plex Mono', Courier, monospace;
+        font-size: 0.7rem;
+        color: var(--text-3, rgba(255, 255, 255, 0.4));
+        letter-spacing: 0.05em;
+    }
+
+    .sf-input {
+        background: var(--bg-muted, rgba(255, 255, 255, 0.03));
+        border: 1px solid var(--line, rgba(255, 255, 255, 0.1));
+        border-radius: 6px;
+        padding: 10px 12px;
+        color: var(--text, #fff);
+        font-size: 0.9rem;
+        font-family: inherit;
+        transition: all 0.2s ease;
+    }
+
+    .sf-input:focus {
+        outline: none;
+        border-color: var(--accent, #e53935);
+        background: var(--bg-hover, rgba(229, 57, 53, 0.05));
+    }
+
+    .sf-select-wrapper {
+        position: relative;
+    }
+
+    .sf-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none; /* remove native arrow */
+        width: 100%;
+        padding-right: 36px;
+        cursor: pointer;
+    }
+
+    .sf-select option {
+        background: var(--bg-card, #111110);
+        color: var(--text, #fff);
+    }
+
+    .sf-select-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        color: var(--text-3, rgba(0, 0, 0, 0.4));
+        pointer-events: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .sf-select-icon {
+            color: var(--text-3, rgba(255, 255, 255, 0.4));
+        }
+    }
+
+    .sf-textarea {
+        resize: vertical;
+        min-height: 100px;
+        max-height: 250px;
+    }
+
+    .sf-submit {
+        background: #e53935 !important;
+        color: #ffffff !important;
+        border: none;
+        border-radius: 6px;
+        padding: 14px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+        margin-top: 8px;
+        text-transform: none;
+        letter-spacing: normal;
+    }
+
+    .sf-submit:hover {
+        background: #f44336 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(229, 57, 53, 0.2);
+    }
+
+    .sf-submit:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    .mono {
+        font-family: 'IBM Plex Mono', Courier, monospace;
+    }
+
+    .sf-status-message {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        text-align: center;
+        display: none;
+    }
+    
+    .sf-status-success {
+        display: block;
+        color: #4caf50;
+    }
+    
+    .sf-status-error {
+        display: block;
+        color: var(--accent, #e53935);
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('sidebarForm') as HTMLFormElement;
+        const btn = document.getElementById('sfSubmitBtn') as HTMLButtonElement;
+        const statusDiv = document.getElementById('sf-status');
+
+        if (!form || !btn || !statusDiv) return;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="sf-submit-text">Submitting...</span>';
+            btn.disabled = true;
+            statusDiv.className = 'sf-status-message';
+            statusDiv.textContent = '';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    statusDiv.textContent = 'Data transmitted securely. We will be in touch.';
+                    statusDiv.className = 'sf-status-message sf-status-success';
+                } else {
+                    statusDiv.textContent = 'Transmission failed. Please try again or email contact@kohza.in directy.';
+                    statusDiv.className = 'sf-status-message sf-status-error';
+                }
+            } catch (error) {
+                statusDiv.textContent = 'Network error. Please try again.';
+                statusDiv.className = 'sf-status-message sf-status-error';
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                setTimeout(() => {
+                    statusDiv.className = 'sf-status-message';
+                }, 5000);
+            }
+        });
+    });
+</script>

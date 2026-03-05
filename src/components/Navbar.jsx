@@ -73,9 +73,9 @@ export default function Navbar() {
                         <a href="https://blogs.kohza.org" target="_blank" rel="noreferrer">Blog</a>
                     </div>
                     <div className="nav-action">
-                        <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="btn btn-red">
-                            Fill The Form
-                        </a>
+                        <Link to="/contact" className="btn btn-red" onClick={() => setMenuOpen(false)}>
+                            Contact Us
+                        </Link>
                     </div>
                     <button
                         className={`nav-toggle${menuOpen ? ' active' : ''}`}
@@ -88,8 +88,8 @@ export default function Navbar() {
                             toggleMenu();
                         }}
                     >
-                        <span style={{ transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '' }} />
-                        <span style={{ transform: menuOpen ? 'rotate(-45deg) translate(0, -2px)' : '' }} />
+                        <span suppressHydrationWarning style={{ transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '' }} />
+                        <span suppressHydrationWarning style={{ transform: menuOpen ? 'rotate(-45deg) translate(0, -2px)' : '' }} />
                     </button>
                 </div>
             </nav>
@@ -117,9 +117,9 @@ export default function Navbar() {
                     <Link to="/remove-leaks/mega" onClick={() => setMenuOpen(false)}>MEGA</Link>
                 </div>
 
-                <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="btn btn-red" style={{ marginTop: '20px' }}>
-                    Fill The Form
-                </a>
+                <Link to="/contact" className="btn btn-red" style={{ marginTop: '20px' }} onClick={() => setMenuOpen(false)}>
+                    Contact Us
+                </Link>
             </div>
         </>
     )

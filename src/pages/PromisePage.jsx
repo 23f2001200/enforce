@@ -1,5 +1,9 @@
 import { Helmet } from 'react-helmet-async'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { Link } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+
+const QuickContactForm = lazy(() => import('../components/QuickContactForm'))
 
 export default function PromisePage() {
     useScrollReveal()
@@ -30,7 +34,7 @@ export default function PromisePage() {
 
                 <div className="promise-header-inner reveal-on-scroll">
                     <div className="case-file-tag" style={{ marginBottom: '2rem' }}>
-                        <span className="mono" style={{ color: 'var(--red)' }}>KOHZA // OUR PROMISE</span>
+                        <span className="mono" style={{ color: 'var(--red)' }}>KOHZA — OUR PROMISE</span>
                     </div>
 
                     <h2 className="promise-title">
@@ -82,15 +86,19 @@ export default function PromisePage() {
                     <div className="contact-bg-overlay" style={{ background: 'linear-gradient(to top, var(--bg-body), transparent)' }} />
                 </div>
                 <div className="section-inner reveal-on-scroll center-text">
-                    <span className="section-tag mono">// SECURE YOUR ASSETS</span>
                     <h2 className="contact-headline">
                         Ready to take back<br />
                         <span className="serif-italic">what is yours?</span>
                     </h2>
                     <p className="contact-sub">Submit your case details securely. We will respond within 24 hours with an operational assessment and next steps.</p>
-                    <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="btn btn-red btn-large">Fill The Form</a>
+
+                    <div style={{ marginTop: '40px', textAlign: 'left' }}>
+                        <Suspense fallback={<div className="faq-skeleton center-text">Loading Secure Form...</div>}>
+                            <QuickContactForm />
+                        </Suspense>
+                    </div>
                     <div className="contact-comms mono">
-                        SECURE COMMS: <a href="mailto:takedowns@kohza.org">takedowns@kohza.org</a>
+                        SECURE COMMS: <a href="mailto:contact@kohza.in">contact@kohza.in</a>
                     </div>
                 </div>
             </section>

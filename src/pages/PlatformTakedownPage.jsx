@@ -448,7 +448,7 @@ export default function PlatformTakedownPage() {
                     </p>
                     <div className="ptd-cta-btns ptd-reveal" style={{ transitionDelay: '220ms' }}>
                         <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="ptd-btn-p">Start Takedown →</a>
-                        <a href="mailto:takedowns@kohza.org" className="ptd-btn-g">takedowns@kohza.org</a>
+                        <a href="mailto:contact@kohza.in" className="ptd-btn-g">contact@kohza.in</a>
                     </div>
                 </div>
             </div>

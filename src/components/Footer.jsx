@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="footer-inner">
                 <div className="footer-left">
                     <span className="footer-logo mono">[KOHZA]</span>
-                    <span className="footer-meta mono">DIGITAL ENFORCEMENT BUREAU // EST. 2024</span>
+                    <span className="footer-meta mono">DIGITAL ENFORCEMENT BUREAU — EST. 2024</span>
                 </div>
                 <div className="footer-right">
                     <Link to="/promise" className="mono" style={{ color: 'var(--text-primary)' }}>Our Promise</Link>

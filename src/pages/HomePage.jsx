@@ -5,6 +5,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 // Lazy load below-the-fold components
 const VideoPlayer = lazy(() => import('../components/VideoPlayer'))
 const FaqAccordion = lazy(() => import('../components/FaqAccordion'))
+const QuickContactForm = lazy(() => import('../components/QuickContactForm'))
 
 export default function HomePage() {
     useScrollReveal()
@@ -26,7 +27,7 @@ export default function HomePage() {
                             "description": "A private digital enforcement bureau specializing in DMCA takedowns and pirated content removal.",
                             "contactPoint": {
                                 "@type": "ContactPoint",
-                                "email": "takedowns@kohza.org",
+                                "email": "contact@kohza.in",
                                 "contactType": "customer service"
                             }
                         }
@@ -146,7 +147,6 @@ export default function HomePage() {
                             </div>
                         </div>
                         <div className="problem-text-col">
-                            <span className="section-tag mono">// THREAT ASSESSMENT</span>
                             <h2 className="section-title">Your content is already <span className="serif-italic">out there.</span></h2>
                             <p className="body-text">
                                 If you produce anything of value — courses, exclusive media, brand content — shadow operators have already scraped it. They are distributing authorized copies of your work right now across networks you don't monitor.
@@ -172,12 +172,11 @@ export default function HomePage() {
             <section className="section section-ops" id="operations">
                 <div className="section-inner">
                     <div className="section-header reveal-on-scroll">
-                        <span className="section-tag mono">// ACTIVE OPERATIONS</span>
                         <h2 className="section-title">What the <span className="serif-italic">Bureau</span> handles.</h2>
                     </div>
                     <div className="ops-grid">
                         <div className="ops-card reveal-on-scroll">
-                            <div className="ops-card-header mono">OP-001 // COURSE PIRACY</div>
+                            <div className="ops-card-header mono">COURSE PIRACY</div>
                             <h3 className="ops-title">Pirated Courses &<br />Info Products</h3>
                             <p className="ops-desc">High-ticket courses, coaching programs, and info products ripped and distributed across Telegram, Discord, and dark-web trackers. We locate every copy and initiate immediate removal.</p>
                             <div className="ops-tags">
@@ -188,7 +187,7 @@ export default function HomePage() {
                             </div>
                         </div>
                         <div className="ops-card reveal-on-scroll" style={{ transitionDelay: '100ms' }}>
-                            <div className="ops-card-header mono">OP-002 // IMPERSONATION</div>
+                            <div className="ops-card-header mono">IMPERSONATION</div>
                             <h3 className="ops-title">Fake Accounts &<br />Identity Theft</h3>
                             <p className="ops-desc">Fraudulent Instagram, Twitter, and TikTok accounts built to deceive your audience and extract money in your name. We compile evidence and execute platform-level takedowns within hours.</p>
                             <div className="ops-tags">
@@ -199,7 +198,7 @@ export default function HomePage() {
                             </div>
                         </div>
                         <div className="ops-card reveal-on-scroll" style={{ transitionDelay: '200ms' }}>
-                            <div className="ops-card-header mono">OP-003 // EXCLUSIVE CONTENT</div>
+                            <div className="ops-card-header mono">EXCLUSIVE CONTENT</div>
                             <h3 className="ops-title">Leaked Creator &<br />OFM Content</h3>
                             <p className="ops-desc">Exclusive creator content and private media distributed without consent via link aggregators and re-upload networks. We identify and permanently suppress every unauthorized copy.</p>
                             <div className="ops-tags">
@@ -218,7 +217,6 @@ export default function HomePage() {
                 <div className="section-inner">
                     <div className="case-layout reveal-on-scroll">
                         <div className="case-text-col">
-                            <span className="section-tag mono">// FIELD REPORT — CLOSED CASE</span>
                             <h2 className="section-title">The client <span className="serif-italic">speaks.</span></h2>
                             <blockquote className="case-quote">
                                 "They came fast and removed the listings fast. For a guy who suffers from problems like these, they are the best to do this."
@@ -247,7 +245,6 @@ export default function HomePage() {
                 <div className="section-inner">
                     <div className="bureau-layout reveal-on-scroll">
                         <div className="bureau-text-col">
-                            <span className="section-tag mono">// ORGANIZATION PROFILE</span>
                             <h2 className="section-title">
                                 Unknown.<br />
                                 <span className="serif-italic">Untraceable.<br />Effective.</span>
@@ -269,7 +266,6 @@ export default function HomePage() {
             <section className="section section-protocol" id="protocol">
                 <div className="section-inner">
                     <div className="protocol-header reveal-on-scroll">
-                        <span className="section-tag mono">// ENFORCEMENT PROTOCOL</span>
                         <h2 className="section-title">The <span className="serif-italic">Protocol</span></h2>
                     </div>
                     <div className="protocol-steps">
@@ -295,7 +291,6 @@ export default function HomePage() {
             <section className="section section-intel" id="faq">
                 <div className="section-inner">
                     <div className="section-header reveal-on-scroll">
-                        <span className="section-tag mono">// INTELLIGENCE BRIEF</span>
                         <h2 className="section-title">Frequently <span className="serif-italic">Asked</span></h2>
                     </div>
                     <Suspense fallback={<div className="faq-skeleton">Loading Protocol Guidelines...</div>}>
@@ -311,15 +306,19 @@ export default function HomePage() {
                     <div className="contact-bg-overlay" />
                 </div>
                 <div className="section-inner reveal-on-scroll center-text">
-                    <span className="section-tag mono">// INITIATE OPERATION</span>
                     <h2 className="contact-headline">
                         Ready to take back<br />
                         <span className="serif-italic">what is yours?</span>
                     </h2>
                     <p className="contact-sub">Submit your case details securely. We will respond within 24 hours with an operational assessment and next steps.</p>
-                    <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="btn btn-red btn-large">Fill The Form</a>
+
+                    <div style={{ marginTop: '40px', textAlign: 'left' }}>
+                        <Suspense fallback={<div className="faq-skeleton center-text">Loading Secure Form...</div>}>
+                            <QuickContactForm />
+                        </Suspense>
+                    </div>
                     <div className="contact-comms mono">
-                        SECURE COMMS: <a href="mailto:takedowns@kohza.org">takedowns@kohza.org</a>
+                        SECURE COMMS: <a href="mailto:contact@kohza.in">contact@kohza.in</a>
                     </div>
                 </div>
             </section>

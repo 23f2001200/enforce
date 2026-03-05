@@ -1,9 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, Suspense, lazy } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { Link } from 'react-router-dom'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 // OFM page replicates the full ofm-creators.html body content
 // Inline styles extracted from the original <style> block are scoped here
+
+const QuickContactForm = lazy(() => import('../components/QuickContactForm'))
 
 export default function OfmCreatorsPage() {
     useScrollReveal()
@@ -263,7 +266,7 @@ export default function OfmCreatorsPage() {
                     </p>
                     <div className="btn-group">
                         <a href="#anatomy" className="btn-elite btn-elite-solid">Understand the Threat</a>
-                        <a href="mailto:takedowns@kohza.org" className="btn-elite">Initiate Enforcement</a>
+                        <a href="mailto:contact@kohza.in" className="btn-elite">Initiate Enforcement</a>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '3.5rem', opacity: 0.9, animation: 'fade-in-up 1s ease 0.8s both' }}>
                         <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '0.6rem', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase' }}>Specialist for</span>
@@ -480,15 +483,17 @@ export default function OfmCreatorsPage() {
                     <div style={{ margin: '0 auto 4rem', fontFamily: "'IBM Plex Mono', monospace", fontSize: '1.1rem', color: '#fff', background: 'rgba(255,255,255,0.02)', padding: '2rem 3rem', borderRadius: '8px', border: '1px solid var(--border-subtle)', display: 'inline-block', textAlign: 'left' }}>
                         <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '16px' }}>
                             <span style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>EMAIL</span>
-                            <a href="mailto:takedowns@kohza.org" style={{ color: 'var(--of-blue)', textDecoration: 'none', fontWeight: 500, fontSize: '1.3rem' }}>takedowns@kohza.org</a>
+                            <a href="mailto:contact@kohza.in" style={{ color: 'var(--of-blue)', textDecoration: 'none', fontWeight: 500, fontSize: '1.3rem' }}>contact@kohza.in</a>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                             <span style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>PHONE/WHATSAPP</span>
                             <a href="tel:+447478036904" style={{ color: 'var(--of-blue)', textDecoration: 'none', fontWeight: 500, fontSize: '1.3rem' }}>+44 7478036904</a>
                         </div>
                     </div>
-                    <div className="cta-actions">
-                        <a href="https://tally.so/r/rjlpyL" target="_blank" rel="noreferrer" className="btn-massive">Fill The Form</a>
+                    <div className="cta-actions" style={{ flexDirection: 'column', gap: '40px' }}>
+                        <Suspense fallback={<div className="faq-skeleton center-text">Loading Secure Form...</div>}>
+                            <QuickContactForm />
+                        </Suspense>
                     </div>
                 </div>
             </section>

@@ -375,7 +375,7 @@ export default function VideoPlayer() {
                         <div className="vp-rec-dot" />
                         REC — FIELD INTERVIEW
                     </div>
-                    <span className="vp-case-id">CASE-FILE // KHZ-2024-09</span>
+                    <span className="vp-case-id">CASE-FILE — KHZ-2024-09</span>
                 </div>
 
                 {/* Video + overlays */}
@@ -440,7 +440,7 @@ export default function VideoPlayer() {
             >
                 <div className="vp-modal-frame">
                     <div className="vp-modal-top">
-                        <span className="vp-modal-title">Field Interview — Richard Wonders // KHZ-2024-09</span>
+                        <span className="vp-modal-title">Field Interview — Richard Wonders</span>
                         <button className="vp-modal-close" aria-label="Close" onClick={closeModal}>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
                                 <path strokeLinecap="round" d="M6 6l12 12M6 18L18 6" />

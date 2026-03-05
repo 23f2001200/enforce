@@ -24,7 +24,8 @@ async function build() {
             '/remove-leaks/onlyfans',
             '/remove-leaks/discord',
             '/remove-leaks/mega',
-            '/remove-leaks/reddit'
+            '/remove-leaks/reddit',
+            '/contact'
         ];
 
         for (const url of routes) {
