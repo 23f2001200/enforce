@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, Suspense, lazy } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useScrollReveal } from '../hooks/useScrollReveal'
-import VideoPlayer from '../components/VideoPlayer'
-import FaqAccordion from '../components/FaqAccordion'
+
+// Lazy load below-the-fold components
+const VideoPlayer = lazy(() => import('../components/VideoPlayer'))
+const FaqAccordion = lazy(() => import('../components/FaqAccordion'))
 
 export default function HomePage() {
     useScrollReveal()
@@ -73,7 +75,7 @@ export default function HomePage() {
             {/* ========== HERO ========== */}
             <section className="hero" id="hero">
                 <div className="hero-bg-wrap">
-                    <img src="/assets/-ultra-photoreal-cinematic-portrait-website-hero-b.jpeg" alt="Cinematic operative monitoring screens" className="hero-bg-img" aria-hidden="true" />
+                    <img src="/assets/-ultra-photoreal-cinematic-portrait-website-hero-b.webp" alt="Cinematic operative monitoring screens" className="hero-bg-img" aria-hidden="true" width="1440" height="724" />
                     <div className="hero-bg-overlay" />
                 </div>
                 <div className="hero-inner reveal-on-scroll">
@@ -130,15 +132,15 @@ export default function HomePage() {
                         <div className="problem-image-col">
                             <div className="evidence-stack">
                                 <div className="evidence-frame evidence-card-1">
-                                    <img src="/assets/evidence/1.jpg" alt="Leaked Course Evidence 01" className="evidence-photo" />
+                                    <img src="/assets/evidence/1.webp" alt="Leaked Course Evidence 01" className="evidence-photo" width="400" height="244" />
                                     <div className="evidence-label mono">EVIDENCE — LEAK 01</div>
                                 </div>
                                 <div className="evidence-frame evidence-card-2">
-                                    <img src="/assets/evidence/2.jpg" alt="Leaked Course Evidence 02" className="evidence-photo" />
+                                    <img src="/assets/evidence/2.webp" alt="Leaked Course Evidence 02" className="evidence-photo" width="400" height="198" />
                                     <div className="evidence-label mono">EVIDENCE — LEAK 02</div>
                                 </div>
                                 <div className="evidence-frame evidence-card-3">
-                                    <img src="/assets/evidence/3.png" alt="Leaked Course Evidence 03" className="evidence-photo" />
+                                    <img src="/assets/evidence/3.webp" alt="Leaked Course Evidence 03" className="evidence-photo" width="400" height="223" />
                                     <div className="evidence-label mono">EVIDENCE — LEAK 03</div>
                                 </div>
                             </div>
@@ -228,7 +230,9 @@ export default function HomePage() {
                             </div>
                         </div>
                         <div className="case-video-col">
-                            <VideoPlayer />
+                            <Suspense fallback={<div className="video-skeleton">Loading Evidence...</div>}>
+                                <VideoPlayer />
+                            </Suspense>
                         </div>
                     </div>
                 </div>
@@ -237,7 +241,7 @@ export default function HomePage() {
             {/* ========== WHO WE ARE ========== */}
             <section className="section section-bureau" id="about">
                 <div className="bureau-bg-wrap">
-                    <img src="/assets/evidence_bg.png" alt="" className="bureau-bg-img" aria-hidden="true" />
+                    <img src="/assets/evidence_bg.webp" alt="" className="bureau-bg-img" aria-hidden="true" width="1440" height="724" />
                     <div className="bureau-bg-overlay" />
                 </div>
                 <div className="section-inner">
@@ -294,14 +298,16 @@ export default function HomePage() {
                         <span className="section-tag mono">// INTELLIGENCE BRIEF</span>
                         <h2 className="section-title">Frequently <span className="serif-italic">Asked</span></h2>
                     </div>
-                    <FaqAccordion />
+                    <Suspense fallback={<div className="faq-skeleton">Loading Protocol Guidelines...</div>}>
+                        <FaqAccordion />
+                    </Suspense>
                 </div>
             </section>
 
             {/* ========== CONTACT ========== */}
             <section className="section section-contact" id="contact">
                 <div className="contact-bg-wrap">
-                    <img src="/assets/phone on table.jpeg" alt="" className="contact-bg-img" aria-hidden="true" />
+                    <img src="/assets/phone%20on%20table.webp" alt="" className="contact-bg-img" aria-hidden="true" width="1440" height="724" />
                     <div className="contact-bg-overlay" />
                 </div>
                 <div className="section-inner reveal-on-scroll center-text">

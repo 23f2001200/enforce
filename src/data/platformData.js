@@ -26,7 +26,7 @@ export const platforms = {
             { q: 'Will the leakers know who reported them?', a: 'No. All escalations are executed through KOHZA\'s proprietary legal entities. Your identity and brand remain completely anonymous and shielded from retaliation.' },
             { q: 'What if they just create a backup channel?', a: 'Telegram pirates always have backups. That’s why we don\'t just delete the messages — we strike the channel itself to trigger a permanent ban, and log your file hashes to auto-flag any future uploads instantly.' }
         ],
-        heroBg: '/assets/evidence/3.png',
+        heroBg: '/assets/evidence/3.webp',
         accentColor: '#229ED9',
         accentGlow: 'rgba(34, 158, 217, 0.4)'
     },

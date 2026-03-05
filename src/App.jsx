@@ -7,6 +7,7 @@ import PromisePage from './pages/PromisePage'
 import OfmCreatorsPage from './pages/OfmCreatorsPage'
 import InfoProductsPage from './pages/InfoProductsPage'
 import PlatformTakedownPage from './pages/PlatformTakedownPage'
+import LinkInBioPage from './pages/LinkInBioPage'
 import useLenis from './hooks/useLenis'
 
 // Scroll to top on route change, and handle hash anchors from other pages
@@ -38,6 +39,8 @@ function BodyClassManager() {
             document.body.classList.add('ofm-page', 'bureau-theme')
         } else if (pathname === '/info-products') {
             document.body.classList.add('edu-page', 'bureau-theme')
+        } else if (pathname === '/ig') {
+            document.body.classList.add('vsl-hybrid-theme')
         } else {
             document.body.classList.add('bureau-theme')
         }
@@ -48,19 +51,23 @@ function BodyClassManager() {
 
 export default function App() {
     useLenis()
+    const { pathname } = useLocation()
+    const isFunnelRoute = pathname.startsWith('/ig')
     return (
         <>
             <ScrollRestorer />
             <BodyClassManager />
-            <Navbar />
+            {!isFunnelRoute && <Navbar />}
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/promise" element={<PromisePage />} />
                 <Route path="/ofm-creators" element={<OfmCreatorsPage />} />
                 <Route path="/info-products" element={<InfoProductsPage />} />
                 <Route path="/remove-leaks/:platformId" element={<PlatformTakedownPage />} />
+                {/* Instagram Funnel Routes */}
+                <Route path="/ig" element={<LinkInBioPage />} />
             </Routes>
-            <Footer />
+            {!isFunnelRoute && <Footer />}
         </>
     )
 }

@@ -16,10 +16,20 @@
       "sourceType": "github",
       "computedHash": "bd3a2e8bec64237aca86cd363fa5349a417eb86d3351447642cc1c5862089c47"
     },
+    "framer-motion-animator": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "computedHash": "22a8401fab0cdf32d5c153b98aba5e95435a479810896879535dc7ac3710efbe"
+    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",
       "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    },
+    "funnel-architect": {
+      "source": "shipshitdev/library",
+      "sourceType": "github",
+      "computedHash": "808a705e093e0c3da80976b460ba9cc430e34c880bd81cbff871b9f15eb1a9d2"
     },
     "nano-banana": {
       "source": "inference-sh-9/skills",
@@ -45,6 +55,11 @@
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
       "computedHash": "4cfe5e95a230616c17d92b44e3cd37bae543ce087a7756a446a62f77d7c58a37"
+    },
+    "vsl-hybrid-funnel": {
+      "source": "mikefilsaime-groove/clickcampaigns-for-claude-code-in-cursor",
+      "sourceType": "github",
+      "computedHash": "e820ab76d1717f7ace9219cd0f5315b42e29943ae655c2a0329fb1056114247f"
     }
   }
 }

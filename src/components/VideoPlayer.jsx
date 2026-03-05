@@ -77,16 +77,24 @@ export default function VideoPlayer() {
                     text-transform: uppercase;
                 }
                 .vp-rec-dot {
+                    position: relative;
                     width: 7px;
                     height: 7px;
                     background: #cc0000;
                     border-radius: 50%;
-                    box-shadow: 0 0 8px #cc0000;
+                }
+                .vp-rec-dot::after {
+                    content: '';
+                    position: absolute;
+                    inset: -4px;
+                    border-radius: 50%;
+                    background: #cc0000;
+                    filter: blur(4px);
                     animation: vp-blink 1.4s ease-in-out infinite;
                 }
                 @keyframes vp-blink {
-                    0%, 100% { opacity: 1; box-shadow: 0 0 8px #cc0000; }
-                    50% { opacity: 0.25; box-shadow: 0 0 2px #cc0000; }
+                    0%, 100% { opacity: 0.8; }
+                    50% { opacity: 0.2; }
                 }
                 .vp-case-id {
                     font-family: 'IBM Plex Mono', monospace;
